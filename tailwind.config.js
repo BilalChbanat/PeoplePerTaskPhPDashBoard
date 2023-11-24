@@ -2,7 +2,9 @@
 module.exports = {
   content: [
     "./**/*.html",
+    "./**/*.php",
     "./dist/*.js",
+    "./dist/*.php",
     "./node_modules/flowbite/**/*.js"
   ],
   darkMode: 'class',
@@ -22,7 +24,7 @@ module.exports = {
         'ft': "860px",
         'fff': "688px",
         'ffff': "816px",
-        'tablet': { 'max': '980px' }, 
+        'tablet': { 'max': '980px' },
         'mobile': { 'max': '760px' }
       },
       colors: {
@@ -42,7 +44,7 @@ module.exports = {
         seperator: '#3F444E',
         darkGrey: '#A9A9A9',
         seperator: '#3F444E',
-        AddB : '#ff8412',
+        AddB: '#ff8412',
         howitworks1: '#F4E9FD',
         howitworks2: '#F4E9FD',
         howitworks3: '#ECFAF0',

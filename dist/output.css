@@ -783,10 +783,6 @@ video {
   margin-right: 20rem;
 }
 
-.mr-\[3\%\] {
-  margin-right: 3%;
-}
-
 .mr-\[60\%\] {
   margin-right: 60%;
 }
@@ -1626,6 +1622,10 @@ video {
   padding: 0.5rem;
 }
 
+.p-\[0\.73rem\] {
+  padding: 0.73rem;
+}
+
 .p-\[0\.8rem\] {
   padding: 0.8rem;
 }
@@ -1677,6 +1677,11 @@ video {
   padding-right: 1%;
 }
 
+.px-\[1\.5rem\] {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
 .px-\[2\%\] {
   padding-left: 2%;
   padding-right: 2%;
@@ -1685,11 +1690,6 @@ video {
 .px-\[2rem\] {
   padding-left: 2rem;
   padding-right: 2rem;
-}
-
-.px-\[4\%\] {
-  padding-left: 4%;
-  padding-right: 4%;
 }
 
 .py-0 {
@@ -2564,10 +2564,6 @@ video {
   fill: #fff;
 }
 
-:is(.dark .dark\:fill-yellow-400) {
-  fill: #facc15;
-}
-
 :is(.dark .dark\:stroke-white) {
   stroke: #fff;
 }
@@ -2656,11 +2652,6 @@ video {
 :is(.dark .dark\:hover\:bg-purple-700:hover) {
   --tw-bg-opacity: 1;
   background-color: rgb(126 34 206 / var(--tw-bg-opacity));
-}
-
-:is(.dark .dark\:hover\:bg-purple-900:hover) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(88 28 135 / var(--tw-bg-opacity));
 }
 
 :is(.dark .dark\:hover\:bg-violet-500:hover) {

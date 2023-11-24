@@ -1,3 +1,8 @@
+<?php
+require_once 'dbh.inc.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,49 +27,21 @@
             <ul class=" ml-[2%] mb-[10%] text-lg">
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="27" height="20" viewBox="0 0 27 20" fill="#6366F1"
-                        class="dark:fill-white">
-                        <g clip-path="url(#clip0_817_33)">
-                            <path
-                                d="M26.2896 13.2302H23.9324C23.54 13.2302 23.2219 13.4658 23.2219 13.7565V17.9242C23.2219 18.2148 23.54 18.4505 23.9324 18.4505H26.2896C26.6819 18.4505 27 18.2148 27 17.9242V13.7565C27 13.4658 26.682 13.2302 26.2896 13.2302Z" />
-                            <path
-                                d="M20.4841 11.2291H18.1269C17.7345 11.2291 17.4164 11.4647 17.4164 11.7554V17.9242C17.4164 18.2148 17.7344 18.4504 18.1269 18.4504H20.4841C20.8764 18.4504 21.1945 18.2148 21.1945 17.9242V11.7554C21.1946 11.4647 20.8765 11.2291 20.4841 11.2291Z" />
-                            <path
-                                d="M8.87318 13.2302H6.51597C6.12361 13.2302 5.80554 13.4658 5.80554 13.7565V17.9242C5.80554 18.2148 6.12361 18.4505 6.51597 18.4505H8.87318C9.26554 18.4505 9.58366 18.2148 9.58366 17.9242V13.7565C9.58366 13.4658 9.26554 13.2302 8.87318 13.2302Z" />
-                            <path
-                                d="M3.06769 11.2291H0.710486C0.318069 11.2291 0 11.4647 0 11.7554V17.9242C0 18.2148 0.318069 18.4505 0.710486 18.4505H3.06769C3.46005 18.4505 3.77812 18.2149 3.77812 17.9242V11.7554C3.77812 11.4647 3.46005 11.2291 3.06769 11.2291Z" />
-                            <path
-                                d="M14.6787 8.56848H12.3214C11.9291 8.56848 11.611 8.80409 11.611 9.09477V17.9242C11.611 18.2149 11.929 18.4505 12.3214 18.4505H14.6787C15.071 18.4505 15.3891 18.2149 15.3891 17.9242V9.09477C15.3891 8.80409 15.071 8.56848 14.6787 8.56848Z" />
-                            <path
-                                d="M25.6562 10.6414C26.1342 10.6414 26.5371 10.3529 26.5371 9.98892V7.87999C26.5371 7.51962 26.1427 7.22746 25.6562 7.22746C25.1697 7.22746 24.7753 7.51962 24.7753 7.87999V8.40719L15.8282 1.742C15.6433 1.60432 15.3856 1.53463 15.1241 1.55225C14.863 1.56978 14.626 1.67253 14.4775 1.83262L7.737 9.09996L1.81709 6.30644C1.40676 6.11281 0.862177 6.20221 0.60084 6.5062C0.339443 6.81015 0.460129 7.2135 0.870517 7.40712L7.50797 10.5393C7.65449 10.6084 7.8184 10.6415 7.98049 10.6415C8.26138 10.6415 8.53693 10.5421 8.7073 10.3585L15.328 3.22024L23.5379 9.33639H22.8091C22.3226 9.33639 21.9282 9.62855 21.9282 9.98892C21.9282 10.3493 22.3226 10.6414 22.8091 10.6414C23.2032 10.6414 25.2551 10.6414 25.6541 10.6414H25.6562Z" />
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_817_33">
-                                <rect width="27" height="20" fill="white" />
-                            </clipPath>
-                        </defs>
-                    </svg>
-                    <a href="dashstats.php"><span class="mx-4">statistic</span></a>
-                </li>
-                <li
-                    class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700 hover:scale-110 rounded mb-[10%]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="22" viewBox="0 0 24 22">
-                        <path
-                            d="M20.6667 20.5V12.625M12 20.5V9.25M3.33337 20.5L3.33337 16M13.5239 3.65594L19.1231 5.83638M10.6987 4.07604L4.63362 8.79981M21.8158 5.24426C22.4504 5.90327 22.4504 6.97173 21.8158 7.63074C21.1812 8.28975 20.1523 8.28975 19.5177 7.63074C18.8831 6.97173 18.8831 5.90327 19.5177 5.24426C20.1523 4.58525 21.1812 4.58525 21.8158 5.24426ZM4.48242 8.61926C5.11702 9.27827 5.11702 10.3467 4.48242 11.0057C3.84782 11.6648 2.81893 11.6648 2.18433 11.0057C1.54972 10.3467 1.54972 9.27827 2.18433 8.61926C2.81893 7.96025 3.84782 7.96025 4.48242 8.61926ZM13.1491 1.86926C13.7837 2.52827 13.7837 3.59673 13.1491 4.25574C12.5145 4.91475 11.4856 4.91475 10.851 4.25574C10.2164 3.59673 10.2164 2.52827 10.851 1.86926C11.4856 1.21025 12.5145 1.21025 13.1491 1.86926Z"
-                            stroke="#6366F1" class="dark:stroke-white" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                    <a href="#"><span class="mx-4">Reports</span></a>
+                    <script src="https://cdn.lordicon.com/lordicon-1.4.0.js"></script>
+                    <lord-icon src="https://cdn.lordicon.com/zrtfxghu.json" trigger="loop" delay="1000"
+                        colors="primary:#6366F1" style="width:34px;height:34px" class="dark:color-whit">
+                    </lord-icon>
+                    <a href="dashstats.php"><span class="mx-4">Users</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="27" viewBox="0 0 24 27" fill="none">
-                        <path
-                            d="M3 22.1484C5.33579 19.4049 8.50702 17.7188 12 17.7188C15.493 17.7188 18.6642 19.4049 21 22.1484M16.5 8.30566C16.5 11.0579 14.4853 13.2891 12 13.2891C9.51472 13.2891 7.5 11.0579 7.5 8.30566C7.5 5.55341 9.51472 3.32227 12 3.32227C14.4853 3.32227 16.5 5.55341 16.5 8.30566Z"
-                            stroke="#6366F1" class="dark:stroke-white" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                    <a href="#"><span class="mx-4">Clients</span></a>
+                    <script src="https://cdn.lordicon.com/lordicon-1.4.0.js"></script>
+                    <b>
+                        <lord-icon src="https://cdn.lordicon.com/bgebyztw.json" trigger="loop" delay="1000"
+                            colors="primary:#6366F1,secondary:#6366F1" style="width:33px;height:33px;font-weight:700;">
+                        </lord-icon>
+                    </b>
+                    <a href="#"><span class="mx-4">Freelancers</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
@@ -76,22 +53,25 @@
                             d="M0.148315 10.2645V17.8948C0.148315 18.4727 0.698373 18.9413 1.37676 18.9413H25.5932C26.2716 18.9413 26.8217 18.4727 26.8217 17.8948V10.2645H0.148315ZM5.83382 15.3409H3.30878C2.98159 15.3409 2.71604 15.1147 2.71604 14.836C2.71604 14.5573 2.98159 14.3311 3.30878 14.3311H5.83382C6.16101 14.3311 6.42656 14.5573 6.42656 14.836C6.42656 15.1147 6.16131 15.3409 5.83382 15.3409ZM9.98296 13.4399H3.30878C2.98159 13.4399 2.71604 13.2137 2.71604 12.935C2.71604 12.6563 2.98159 12.4301 3.30878 12.4301H9.98296C10.3102 12.4301 10.5757 12.6563 10.5757 12.935C10.5757 13.2137 10.3104 13.4399 9.98296 13.4399ZM24.1884 15.9448C24.1884 16.0844 24.056 16.1973 23.8921 16.1973H17.0664C16.9025 16.1973 16.7701 16.0844 16.7701 15.9448V12.7098C16.7701 12.5702 16.9025 12.4573 17.0664 12.4573H23.8921C24.056 12.4573 24.1884 12.5702 24.1884 12.7098V15.9448Z"
                             fill="#6366F1" class="dark:fill-white" />
                     </svg>
-                    <a href="#"><span class="mx-4">Payments</span></a>
+                    <a href="#"><span class="mx-4">Category</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+                    <script src="https://cdn.lordicon.com/lordicon-1.4.0.js"></script>
+                    <lord-icon src="https://cdn.lordicon.com/lecprnjb.json" trigger="loop" colors="primary:#6366F1"
+                        style="width:33px;height:33px">
+                    </lord-icon>
+                    <a href="#"><span class="mx-4">Projects</span></a>
+                </li>
+                <li
+                    class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700 hover:scale-110 rounded mb-[10%]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="22" viewBox="0 0 24 22">
                         <path
-                            d="M13 16.25C14.7949 16.25 16.25 14.7949 16.25 13C16.25 11.2051 14.7949 9.75002 13 9.75002C11.205 9.75002 9.74996 11.2051 9.74996 13C9.74996 14.7949 11.205 16.25 13 16.25Z"
+                            d="M20.6667 20.5V12.625M12 20.5V9.25M3.33337 20.5L3.33337 16M13.5239 3.65594L19.1231 5.83638M10.6987 4.07604L4.63362 8.79981M21.8158 5.24426C22.4504 5.90327 22.4504 6.97173 21.8158 7.63074C21.1812 8.28975 20.1523 8.28975 19.5177 7.63074C18.8831 6.97173 18.8831 5.90327 19.5177 5.24426C20.1523 4.58525 21.1812 4.58525 21.8158 5.24426ZM4.48242 8.61926C5.11702 9.27827 5.11702 10.3467 4.48242 11.0057C3.84782 11.6648 2.81893 11.6648 2.18433 11.0057C1.54972 10.3467 1.54972 9.27827 2.18433 8.61926C2.81893 7.96025 3.84782 7.96025 4.48242 8.61926ZM13.1491 1.86926C13.7837 2.52827 13.7837 3.59673 13.1491 4.25574C12.5145 4.91475 11.4856 4.91475 10.851 4.25574C10.2164 3.59673 10.2164 2.52827 10.851 1.86926C11.4856 1.21025 12.5145 1.21025 13.1491 1.86926Z"
                             stroke="#6366F1" class="dark:stroke-white" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" />
-                        <path
-                            d="M20.2878 15.9546C20.1567 16.2516 20.1176 16.5811 20.1756 16.9006C20.2335 17.2201 20.3858 17.5149 20.6128 17.747L20.6719 17.8061C20.8551 17.989 21.0003 18.2062 21.0995 18.4454C21.1986 18.6845 21.2496 18.9408 21.2496 19.1996C21.2496 19.4585 21.1986 19.7148 21.0995 19.9539C21.0003 20.193 20.8551 20.4103 20.6719 20.5932C20.489 20.7763 20.2718 20.9216 20.0326 21.0207C19.7935 21.1199 19.5372 21.1709 19.2784 21.1709C19.0195 21.1709 18.7632 21.1199 18.5241 21.0207C18.285 20.9216 18.0677 20.7763 17.8848 20.5932L17.8257 20.5341C17.5936 20.3071 17.2988 20.1548 16.9793 20.0968C16.6598 20.0389 16.3303 20.078 16.0333 20.2091C15.742 20.334 15.4936 20.5412 15.3186 20.8055C15.1436 21.0697 15.0497 21.3793 15.0484 21.6962V21.8637C15.0484 22.3861 14.8409 22.8871 14.4715 23.2564C14.1021 23.6258 13.6011 23.8334 13.0787 23.8334C12.5564 23.8334 12.0554 23.6258 11.686 23.2564C11.3166 22.8871 11.1091 22.3861 11.1091 21.8637V21.775C11.1014 21.449 10.9959 21.1329 10.8062 20.8677C10.6165 20.6025 10.3514 20.4005 10.0454 20.2879C9.74837 20.1568 9.41886 20.1177 9.09938 20.1756C8.7799 20.2336 8.4851 20.3859 8.25299 20.6129L8.1939 20.672C8.01097 20.8551 7.79373 21.0004 7.55461 21.0995C7.3155 21.1987 7.05919 21.2497 6.80034 21.2497C6.54149 21.2497 6.28518 21.1987 6.04606 21.0995C5.80694 21.0004 5.58971 20.8551 5.40678 20.672C5.22364 20.4891 5.07836 20.2718 4.97924 20.0327C4.88011 19.7936 4.82909 19.5373 4.82909 19.2784C4.82909 19.0196 4.88011 18.7633 4.97924 18.5242C5.07836 18.285 5.22364 18.0678 5.40678 17.8849L5.46587 17.8258C5.69291 17.5937 5.84522 17.2989 5.90315 16.9794C5.96107 16.6599 5.92197 16.3304 5.79087 16.0334C5.66603 15.7421 5.45873 15.4936 5.19451 15.3187C4.93028 15.1437 4.62066 15.0498 4.30375 15.0485H4.13632C3.61393 15.0485 3.11293 14.841 2.74354 14.4716C2.37415 14.1022 2.16663 13.6012 2.16663 13.0788C2.16663 12.5564 2.37415 12.0554 2.74354 11.686C3.11293 11.3166 3.61393 11.1091 4.13632 11.1091H4.22496C4.55094 11.1015 4.86709 10.996 5.1323 10.8063C5.39751 10.6166 5.59953 10.3515 5.71208 10.0455C5.84318 9.74843 5.88229 9.41892 5.82436 9.09944C5.76643 8.77996 5.61412 8.48516 5.38708 8.25305L5.32799 8.19396C5.14485 8.01103 4.99957 7.79379 4.90045 7.55468C4.80132 7.31556 4.7503 7.05925 4.7503 6.8004C4.7503 6.54155 4.80132 6.28524 4.90045 6.04612C4.99957 5.80701 5.14485 5.58977 5.32799 5.40684C5.51092 5.2237 5.72816 5.07842 5.96727 4.9793C6.20639 4.88017 6.4627 4.82915 6.72155 4.82915C6.9804 4.82915 7.23671 4.88017 7.47583 4.9793C7.71494 5.07842 7.93218 5.2237 8.11511 5.40684L8.1742 5.46593C8.40631 5.69297 8.70111 5.84528 9.02059 5.90321C9.34007 5.96113 9.66958 5.92203 9.96663 5.79093H10.0454C10.3367 5.66609 10.5851 5.45879 10.7601 5.19457C10.9351 4.93034 11.029 4.62072 11.0303 4.30381V4.13638C11.0303 3.61399 11.2378 3.11299 11.6072 2.7436C11.9766 2.37421 12.4776 2.16669 13 2.16669C13.5224 2.16669 14.0234 2.37421 14.3927 2.7436C14.7621 3.11299 14.9697 3.61399 14.9697 4.13638V4.22502C14.9709 4.54193 15.0648 4.85156 15.2398 5.11578C15.4148 5.38001 15.6632 5.5873 15.9545 5.71214C16.2516 5.84324 16.5811 5.88235 16.9005 5.82442C17.22 5.76649 17.5148 5.61419 17.7469 5.38714L17.806 5.32805C17.989 5.14492 18.2062 4.99963 18.4453 4.90051C18.6844 4.80139 18.9407 4.75037 19.1996 4.75037C19.4584 4.75037 19.7147 4.80139 19.9539 4.90051C20.193 4.99963 20.4102 5.14492 20.5931 5.32805C20.7763 5.51098 20.9216 5.72822 21.0207 5.96734C21.1198 6.20645 21.1708 6.46276 21.1708 6.72161C21.1708 6.98046 21.1198 7.23677 21.0207 7.47589C20.9216 7.71501 20.7763 7.93224 20.5931 8.11517L20.5341 8.17426C20.307 8.40637 20.1547 8.70117 20.0968 9.02065C20.0388 9.34013 20.078 9.66964 20.2091 9.96669V10.0455C20.3339 10.3368 20.5412 10.5852 20.8054 10.7602C21.0696 10.9352 21.3793 11.0291 21.6962 11.0303H21.8636C22.386 11.0303 22.887 11.2378 23.2564 11.6072C23.6258 11.9766 23.8333 12.4776 23.8333 13C23.8333 13.5224 23.6258 14.0234 23.2564 14.3928C22.887 14.7622 22.386 14.9697 21.8636 14.9697H21.775C21.458 14.971 21.1484 15.0649 20.8842 15.2399C20.62 15.4149 20.4127 15.6633 20.2878 15.9546Z"
-                            stroke="#6366F1" class="dark:stroke-white" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <rect width="26" height="26" />
                     </svg>
-                    <a href="#"><span class="mx-4">Settings</span></a>
+                    <a href="#"><span class="mx-4">testimonial</span></a>
                 </li>
             </ul>
             <hr class="mb-[10%]">
@@ -110,13 +90,10 @@
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="28" viewBox="0 0 25 28" fill="none">
-                        <path
-                            d="M9.111 10.6875C9.3461 9.94737 9.81015 9.32327 10.421 8.92574C11.0318 8.5282 11.7499 8.38289 12.4482 8.51553C13.1465 8.64817 13.7798 9.0502 14.2361 9.65043C14.6923 10.2507 14.9421 11.0103 14.941 11.7949C14.941 14.0098 11.941 15.1172 11.941 15.1172M12.021 19.5469H12.031M22.021 14.0098C22.021 20.1259 17.5438 25.084 12.021 25.084C6.49815 25.084 2.021 20.1259 2.021 14.0098C2.021 7.89364 6.49815 2.93555 12.021 2.93555C17.5438 2.93555 22.021 7.89364 22.021 14.0098Z"
-                            stroke="#6366F1" class="dark:stroke-white" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <rect x="0.0209961" y="0.720703" width="24" height="26.5781" />
-                    </svg>
+                    <script src="https://cdn.lordicon.com/lordicon-1.4.0.js"></script>
+                    <lord-icon src="https://cdn.lordicon.com/ojnjgkun.json" trigger="loop" delay="2000"
+                        colors="primary:#6366F1" style="width:33px;height:33px">
+                    </lord-icon>
                     <a href="#"><span class="mx-4">Help Center</span></a>
                 </li>
                 <li>
@@ -129,7 +106,7 @@
                     </button>
                 </li>
             </ul>
-            <div class="flex flex-row ml-[4%]  my-[40%]">
+            <div class="flex flex-row ml-[4%]" style="margin-top:0.75rem;">
                 <div class="rounded-[50%] bg-slate-400 mr-[7%]">
                     <img class="rounded-[50%]" src="../../images/young man in formalwear standing with hands on hip.svg"
                         alt="freelencer">
@@ -156,10 +133,10 @@
                     <img class="mr-[10%]" src="../../images/search-2905 1.svg" alt="search">
                 </div>
             </nav>
-            <nav
-                class=" bg-mainBlue dark:bg-purple-500 text-xl bg-opacity-75 p-4 text-mainBlue dark:text-purple-500 font-bold rounded-md h-[6%] flex flex-row items-center gap-5">
-                <div
-                    class="flex flex-row gap-2 justify-center items-center bg-white rounded-3xl text-center ml-[7%] w-[15%] h-10 transition-transform duration-200 ease-out hover:scale-110">
+            <nav class=" bg-mainBlue dark:bg-purple-500 text-xl bg-opacity-75 text-mainBlue dark:text-purple-500 font-bold rounded-md h-[6%] flex flex-row justify-between p-[0.73rem] "
+                style="padding:0.53rem;">
+                <div class="flex flex-row items-center justify-center bg-white rounded-2xl text-xl px-[1.5rem]"
+                    style="padding:0.53rem;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 20 20" fill="none">
                         <path
                             d="M18.3333 7.1V3.31666C18.3333 2.14166 17.8 1.66666 16.475 1.66666H13.1083C11.7833 1.66666 11.25 2.14166 11.25 3.31666V7.09166C11.25 8.275 11.7833 8.74166 13.1083 8.74166H16.475C17.8 8.75 18.3333 8.275 18.3333 7.1Z"
@@ -176,8 +153,8 @@
                     </svg>
                     <a href="#"><span>Dashboard</span></a>
                 </div>
-                <div
-                    class="flex flex-row gap-2 justify-center items-center bg-white rounded-3xl text-center text-xl ml-[21%] w-[15%] h-10 transition-transform duration-200 ease-out hover:scale-110">
+                <div class="flex flex-row items-center justify-center bg-white rounded-2xl text-xl px-[1.5rem]"
+                    style="padding:0.53rem;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="39" height="30" viewBox="0 0 33 27" fill="none">
                         <path d="M12.9551 17.4445H9.73242V18.7102H12.9551V17.4445Z" fill="#6366F1"
                             class="dark:fill-purple-500 bg-opacity-75 p-4" />
@@ -234,8 +211,8 @@
                     </svg>
                     <a href="#"><span>Active Projects</span></a>
                 </div>
-                <div
-                    class="flex flex-row gap-2 justify-center items-center bg-white rounded-3xl text-center text-xl ml-[21%] w-[15%] h-10 transition-transform duration-200 ease-out hover:scale-110">
+                <div class="flex flex-row items-center justify-center bg-white rounded-2xl text-xl px-[1.5rem]"
+                    style="padding:0.53rem;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" viewBox="0 0 23 20" fill="none">
                         <path
                             d="M8.53943 2.32485C9.51236 1.89249 13.4876 1.89249 14.4606 2.32485V4H16V1.56747C16 0.527335 14.486 0 11.5 0C8.51404 0 7 0.527335 7 1.56747V4H8.53943V2.32485Z"
@@ -255,33 +232,29 @@
                     class="table-auto text-black dark:text-white dark:bg-indigo-950 p-4 w-[90%] m-[2%] pl-[5%] py-[2%] rounded-2xl border dark:border-none">
                     <table class="w-[95%] border-2 border-slate- dark:border-white text-center">
                         <tr class="border-b-2 text-xl bg-mainBlue dark:bg-purple-500 text-white">
-                            <th class="py-2">Name</th>
-                            <th>Projet</th>
-                            <th>Contact</th>
-                            <th>Deadline</th>
+                            <th class="py-2">Id</th>
+                            <th>Name</th>
+                            <th>email</th>
+                            <th>Password</th>
                             <th></th>
                         </tr>
-                        <tbody id="tbody"></tbody>
+
+                        </tbody>
                     </table>
                     <button id="add"
-                        class="bg-AddB dark:bg-slate-900 dark:border-violet-400 flex items-center px-[4%] rounded-[58px] h-20 border-AddCB border-2 w-[30%]  mx-[35%] mt-[2%] text-white dark:text-yellow-400 font-poppins text-2xl transition-transform duration-200 ease-out hover:scale-110">
-                        <svg class="mr-[3%]" xmlns="http://www.w3.org/2000/svg" width="42" height="39"
-                            viewBox="0 0 42 39" fill="none">
-                            <path
-                                d="M34.594 0H14.2661C10.6408 0 7.69481 2.75595 7.69481 6.14742V7.19847H6.57129C2.94598 7.19847 0 9.95442 0 13.3459V32.3626C0 35.754 2.94598 38.51 6.57129 38.51H26.8992C30.5245 38.51 33.4705 35.754 33.4705 32.3626V31.3115H34.594C38.2193 31.3115 41.1653 28.5556 41.1653 25.1641V6.14742C41.1653 2.75595 38.2193 0 34.594 0ZM30.8576 32.3626C30.8576 34.4036 29.0809 36.0657 26.8992 36.0657H6.57129C4.38957 36.0657 2.61284 34.4036 2.61284 32.3626V13.3459C2.61284 11.3049 4.38957 9.64278 6.57129 9.64278H26.8992C29.0809 9.64278 30.8576 11.3049 30.8576 13.3459V32.3626ZM38.5524 25.1641C38.5524 27.2051 36.7757 28.8672 34.594 28.8672H33.4705V13.3459C33.4705 9.95442 30.5245 7.19847 26.8992 7.19847H10.3077V6.14742C10.3077 4.10643 12.0844 2.4443 14.2661 2.4443H34.594C36.7757 2.4443 38.5524 4.10643 38.5524 6.14742V25.1641Z"
-                                fill="white" class="dark:fill-yellow-400" />
-                            <path
-                                d="M22.4378 21.632H18.0417V17.5195C18.0417 16.8473 17.4538 16.2973 16.7353 16.2973C16.0167 16.2973 15.4288 16.8473 15.4288 17.5195V21.632H11.0327C10.3142 21.632 9.72632 22.182 9.72632 22.8541C9.72632 23.5263 10.3142 24.0763 11.0327 24.0763H15.4288V28.1888C15.4288 28.861 16.0167 29.411 16.7353 29.411C17.4538 29.411 18.0417 28.861 18.0417 28.1888V24.0763H22.4378C23.1563 24.0763 23.7442 23.5263 23.7442 22.8541C23.7442 22.182 23.1563 21.632 22.4378 21.632Z"
-                                fill="white" class="dark:fill-yellow-400" />
-                        </svg>
+                        class="bg-AddB dark:bg-slate-900 dark:border-violet-400 flex items-center justify-center rounded-[58px] h-16 border-AddCB border-2 w-[30%]  mx-[35%] mt-[2%] text-white dark:text-yellow-400 font-poppins">
+                        <script src="https://cdn.lordicon.com/lordicon-1.4.0.js"></script>
+                        <script src="https://cdn.lordicon.com/lordicon-1.4.0.js"></script>
+                        <lord-icon src="https://cdn.lordicon.com/hqymfzvj.json" trigger="loop" delay="28"
+                            colors="primary:#ffffff" style="width:28px;height:28px">
+                        </lord-icon>
                         <p>Add a New Project</p>
                     </button>
                 </div>
                 <!-- form -->
                 <div class="hidden fixed top-0 left-0 w-full h-screen bg-black bg-opacity-80" id="formAdd">
                     <div class="fixed top-[30%] right-[30%] w-[45%] h-[40%] rounded-3xl bg-white py-2">
-                        <button class="top-0 mx-[94%] w-10 h-10 rounded-full border-2 p-1 " id="closeButton"
-                            onclick="closeForm()">
+                        <button class="top-0 mx-[94%] w-10 h-10 rounded-full border-2 p-1 " id="closeButton">
                             <img src="../../images/close.svg" alt="close">
                         </button>
                         <div class="py-2 px-10 text-center">
@@ -306,8 +279,7 @@
 
                 <div class="hidden fixed top-0 left-0 w-full h-screen bg-black bg-opacity-80" id="formUpdate">
                     <div class="fixed top-[30%] right-[30%] w-[45%] h-[40%] rounded-3xl bg-white py-2">
-                        <button class="top-0 mx-[94%] w-10 h-10 rounded-full border-2 p-1 " id="closeButton"
-                            onclick="closeForm()">
+                        <button class="top-0 mx-[94%] w-10 h-10 rounded-full border-2 p-1 " id="closeButton">
                             <img src="../../images/close.svg" alt="close">
                         </button>
                         <div class="py-2 px-10 text-center">
@@ -353,162 +325,5 @@
         </div> -->
             </section>
         </main class="bg-slate-50">
-        <script>
-            let addButton = document.querySelector("#add");
-            let Addform = document.querySelector("#formAdd");
-            let popup = document.querySelector(".popup");
-            let okButton = document.querySelector("#OK")
-            let popupD = document.querySelector(".popup-delet")
-            let okD = document.querySelector("#OK-D")
-
-            addButton.addEventListener("click", function () {
-                Addform.style.display = "block";
-            });
-
-            let save = document.querySelector("#save")
-            let Name = document.querySelector("#name")
-            let Proj = document.querySelector("#project")
-            let Contact = document.querySelector("#contact")
-            let Deadline = document.querySelector("#deadline")
-            let Projects;
-            // let mode = 'create';
-            let tmp;
-
-            // if(mode === 'create'){
-            if (localStorage.product != null) {
-                // parse : 
-                Projects = JSON.parse(localStorage.product)
-            } else {
-                Projects = [];
-            }
-            // }else {
-            //     Projects[tmp] = NewProject;
-            // }
-            // -------------
-            // --------Create
-            save.addEventListener("click", function (event) {
-                event.preventDefault();
-                NewProject = {
-                    name: Name.value,
-                    proj: Proj.value,
-                    contact: Contact.value,
-                    deadline: Deadline.value
-                }
-                // ajouter un projet a la fin du tableau
-                Projects.push(NewProject)
-                //enregistrement des projets
-                localStorage.setItem('product', JSON.stringify(Projects))//il faut compprendre ça
-
-                Addform.style.display = "none";
-                popup.style.display = "block";
-                showData();
-                clearData();
-
-            })
-            showData();
-            // -----------
-            //---------Read
-            function showData() {
-                let table = '';
-                for (let i = 0; i < Projects.length; i++) {
-                    table += `
-            <tr class="text-lg bg-slate- border-b-2 text-xl transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-900 hover:scale-110">
-                <td class="p-3">${Projects[i].name}</td>
-                <td class="p-3">${Projects[i].proj}</td>
-                <td class="p-3">${Projects[i].contact}</td>
-                <td class="p-3">${Projects[i].deadline}</td>
-                <td class="p-3" style="display: flex;justify-content: center;">
-                    <button id="edit" class="edit-button" onclick="updateProject(${i})"><img  src="../../images/editW_square_icon_149939 1.svg" alt="supression"></button>
-                    <button class="delete-button"  onclick="deleteData(${i})"><img  src="../../images/delete_circle_icon_149950 1.svg" alt="supression"></button>
-                </td>
-            </tr>`
-                }
-                document.getElementById("tbody").innerHTML = table
-            }
-            //---------Read
-            //----------delet
-            function deleteData(i) {
-                // console.log(i)
-                Projects.splice(i, 1)
-                localStorage.product = JSON.stringify(Projects)
-                showData();
-                popupD.style.display = "block";
-            }
-            //----------delet
-            //---------update
-            let updateForm = document.querySelector("#formUpdate");
-            let updateSaveButton = document.querySelector("#update-save");
-            function updateProject(i) {
-                updateForm.style.display = "block";
-                document.getElementById("update-name").value = Projects[i].name;
-                document.getElementById("update-project").value = Projects[i].proj;
-                document.getElementById("update-contact").value = Projects[i].contact;
-                document.getElementById("update-deadline").value = Projects[i].deadline;
-                tmp = i;
-            }
-            updateSaveButton.addEventListener("click", function (event) {
-                event.preventDefault();
-                if (typeof tmp !== "undefined") {
-                    Projects[tmp].name = document.getElementById("update-name").value;
-                    Projects[tmp].proj = document.getElementById("update-project").value;
-                    Projects[tmp].contact = document.getElementById("update-contact").value;
-                    Projects[tmp].deadline = document.getElementById("update-deadline").value;
-
-                    localStorage.setItem("product", JSON.stringify(Projects));
-                    updateForm.style.display = "none";
-                    showData();
-                    // tmp = undefined;
-                }
-            });
-            // ---------update
-            // ---------------
-            function clearData() {
-                Name.value = '';
-                Proj.value = '';
-                Contact.value = '';
-                Deadline.value = '';
-            }
-            function closeForm(i) {
-                Addform.style.display = "none";
-                updateForm.style.display = "none"
-            }
-            okButton.addEventListener("click", function () {
-                popup.style.display = "none";
-            });
-            okD.addEventListener("click", function () {
-                popupD.style.display = "none";
-            });
-            // search
-            //     searchbar.addEventListener("click", function () {
-            //     if (SearchPop.style.display === "none" || SearchPop.style.display === "") {
-            //         SearchPop.style.display = "block";
-            //     } else {
-            //         SearchPop.style.display = "none";
-            //     }
-            // });
-
-
-            // -----------
-            // --------Mode
-            const themeToggleBtn = document.querySelector(".theme-toggle");
-            const toggleLightTheme = () => {
-                document.documentElement.classList.remove("fillB");
-            };
-            const toggleDarkTheme = () => {
-                document.documentElement.classList.add("fillB");
-            };
-            const switchTheme = () => {
-                const currentTheme = document.documentElement.classList.contains("fillB") ? "fillB" : "light";
-                if (currentTheme === "fillB") {
-                    toggleLightTheme();
-                } else {
-                    toggleDarkTheme();
-                }
-            };
-            themeToggleBtn.addEventListener("click", switchTheme);
-            // Apply the initial dark theme class
-            document.documentElement.classList.add("fillB");
-            // --------Mode
-        </script>
 
 </html>

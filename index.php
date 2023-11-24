@@ -59,9 +59,9 @@
               <button type="button"
                 class="flex text-defaultText rounded-full bg-loginBtnBg py-2 px-8 justify-center items-center font-poppins text-base font-medium w-[full]">Log
                 In</button>
-              <button type="button"
-                class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[full]">Sign
-                Up</button>
+              <a href="src/pages/dashclient.php"
+                class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[full]">Dash
+                Board</a>
             </li>
             <li>
               <div class="flex ht:hidden burgerMenu">
