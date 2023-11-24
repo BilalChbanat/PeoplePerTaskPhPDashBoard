@@ -238,6 +238,41 @@ require_once 'dbh.inc.php';
                             <th>Password</th>
                             <th></th>
                         </tr>
+                        <tbody id="tbody">
+                            <?php
+                            $sql = "SELECT * FROM user";
+                            $result = mysqli_query($conn, $sql);
+                            if (mysqli_num_rows($result) > 0):
+                                while ($row = mysqli_fetch_assoc($result)):
+                                    echo "<tr>
+                                        <td>$row[id_user]</td>
+                                        <td>$row[name_user]</td>
+                                        <td>$row[email]</td>
+                                        <td>$row[password]</td>
+                                        <td>
+                                            <a href='action/delete.php?id=$row[id_user]'>
+                                                <script src='https://cdn.lordicon.com/lordicon.js'></script>
+                                                <lord-icon src='https://cdn.lordicon.com/ylvuooxd.json' trigger='loop'
+                                                    delay='50' state='hover-line'
+                                                    colors='primary:#b4b4b4,secondary:#545454,tertiary:#66ee78,quaternary:#3a3347'
+                                                    style='width:25px;height:25px'>
+                                                </lord-icon>
+                                            </a>
+                                            <a href='action/delete.php?id=$row[id_user]'>
+                                                <script src='https://cdn.lordicon.com/lordicon.js'></script>
+                                                <lord-icon src='https://cdn.lordicon.com/hjbrplwk.json' trigger='loop'
+                                                    delay='500'
+                                                    colors='primary:#646e78,secondary:#c71f16,tertiary:#ffffff,quaternary:#3a3347'
+                                                    style='width:25px;height:25px'>
+                                                </lord-icon>
+                                            </a>
+                                        </td>
+                                    </tr>";
+                                endwhile;
+                            endif;
+                            mysqli_close($conn);
+                            ?>
+
 
                         </tbody>
                     </table>
