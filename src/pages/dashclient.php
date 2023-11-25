@@ -1,5 +1,46 @@
 <?php
-require_once 'dbh.inc.php';
+include 'dbh.inc.php';
+$name = "";
+$email = "";
+$password = "";
+
+
+$errorMessage = "";
+$successMessage = "";
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    do {
+        if (empty($name) || empty($email) || empty($password)) {
+            $errorMessage = "The fields can't be blank";
+            break;
+        }
+
+        // add the user to the database
+
+        $sqlAdd = "INSERT INTO user (name_user, password, email) 
+        VALUES ('$name', '$password', '$email')";
+        $resultadd = $conn->query($sqlAdd);
+
+        if (!$resultadd) {
+            $errorMessage = "Invalide query " . $conn->error;
+            break;
+        }
+
+
+
+        $name = "";
+        $email = "";
+        $password = "";
+
+        $successMessage = "User added successfully";
+
+        header('location: dashclient.php');
+        exit;
+    } while (false);
+}
 ?>
 
 
@@ -28,8 +69,8 @@ require_once 'dbh.inc.php';
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
                     <script src="https://cdn.lordicon.com/lordicon-1.4.0.js"></script>
-                    <lord-icon src="https://cdn.lordicon.com/zrtfxghu.json" trigger="loop" delay="1000"
-                        colors="primary:#6366F1" style="width:34px;height:34px" class="dark:color-whit">
+                    <lord-icon src="https://cdn.lordicon.com/zrtfxghu.json" trigger="loop" colors="primary:#6366F1"
+                        style="width:34px;height:34px" class="dark:color-whit">
                     </lord-icon>
                     <a href="dashstats.php"><span class="mx-4">Users</span></a>
                 </li>
@@ -37,7 +78,7 @@ require_once 'dbh.inc.php';
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
                     <script src="https://cdn.lordicon.com/lordicon-1.4.0.js"></script>
                     <b>
-                        <lord-icon src="https://cdn.lordicon.com/bgebyztw.json" trigger="loop" delay="1000"
+                        <lord-icon src="https://cdn.lordicon.com/bgebyztw.json" trigger="loop"
                             colors="primary:#6366F1,secondary:#6366F1" style="width:33px;height:33px;font-weight:700;">
                         </lord-icon>
                     </b>
@@ -45,14 +86,10 @@ require_once 'dbh.inc.php';
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="27" height="23" viewBox="0 0 27 23" fill="none">
-                        <path
-                            d="M26.8214 7.02942V5.07941C26.8214 4.50153 26.2713 4.03296 25.5929 4.03296H1.37676C0.698373 4.03296 0.148315 4.50127 0.148315 5.07916V7.02917H26.8214V7.02942Z"
-                            fill="#6366F1" class="dark:fill-white" />
-                        <path
-                            d="M0.148315 10.2645V17.8948C0.148315 18.4727 0.698373 18.9413 1.37676 18.9413H25.5932C26.2716 18.9413 26.8217 18.4727 26.8217 17.8948V10.2645H0.148315ZM5.83382 15.3409H3.30878C2.98159 15.3409 2.71604 15.1147 2.71604 14.836C2.71604 14.5573 2.98159 14.3311 3.30878 14.3311H5.83382C6.16101 14.3311 6.42656 14.5573 6.42656 14.836C6.42656 15.1147 6.16131 15.3409 5.83382 15.3409ZM9.98296 13.4399H3.30878C2.98159 13.4399 2.71604 13.2137 2.71604 12.935C2.71604 12.6563 2.98159 12.4301 3.30878 12.4301H9.98296C10.3102 12.4301 10.5757 12.6563 10.5757 12.935C10.5757 13.2137 10.3104 13.4399 9.98296 13.4399ZM24.1884 15.9448C24.1884 16.0844 24.056 16.1973 23.8921 16.1973H17.0664C16.9025 16.1973 16.7701 16.0844 16.7701 15.9448V12.7098C16.7701 12.5702 16.9025 12.4573 17.0664 12.4573H23.8921C24.056 12.4573 24.1884 12.5702 24.1884 12.7098V15.9448Z"
-                            fill="#6366F1" class="dark:fill-white" />
-                    </svg>
+                    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                    <lord-icon src="https://cdn.lordicon.com/bgitlnnj.json" trigger="loop"
+                        colors="primary:#3080e8,secondary:#b4b4b4" style="width:33px;height:33px">
+                    </lord-icon>
                     <a href="#"><span class="mx-4">Category</span></a>
                 </li>
                 <li
@@ -65,12 +102,10 @@ require_once 'dbh.inc.php';
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700 hover:scale-110 rounded mb-[10%]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="22" viewBox="0 0 24 22">
-                        <path
-                            d="M20.6667 20.5V12.625M12 20.5V9.25M3.33337 20.5L3.33337 16M13.5239 3.65594L19.1231 5.83638M10.6987 4.07604L4.63362 8.79981M21.8158 5.24426C22.4504 5.90327 22.4504 6.97173 21.8158 7.63074C21.1812 8.28975 20.1523 8.28975 19.5177 7.63074C18.8831 6.97173 18.8831 5.90327 19.5177 5.24426C20.1523 4.58525 21.1812 4.58525 21.8158 5.24426ZM4.48242 8.61926C5.11702 9.27827 5.11702 10.3467 4.48242 11.0057C3.84782 11.6648 2.81893 11.6648 2.18433 11.0057C1.54972 10.3467 1.54972 9.27827 2.18433 8.61926C2.81893 7.96025 3.84782 7.96025 4.48242 8.61926ZM13.1491 1.86926C13.7837 2.52827 13.7837 3.59673 13.1491 4.25574C12.5145 4.91475 11.4856 4.91475 10.851 4.25574C10.2164 3.59673 10.2164 2.52827 10.851 1.86926C11.4856 1.21025 12.5145 1.21025 13.1491 1.86926Z"
-                            stroke="#6366F1" class="dark:stroke-white" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
+                    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                    <lord-icon src="https://cdn.lordicon.com/ayhtotha.json" trigger="loop" colors="primary:#3080e8"
+                        style="width:33px;height:33px">
+                    </lord-icon>
                     <a href="#"><span class="mx-4">testimonial</span></a>
                 </li>
             </ul>
@@ -272,8 +307,6 @@ require_once 'dbh.inc.php';
                             endif;
                             mysqli_close($conn);
                             ?>
-
-
                         </tbody>
                     </table>
                     <button id="add"
@@ -286,8 +319,30 @@ require_once 'dbh.inc.php';
                         <p>Add a New Project</p>
                     </button>
                 </div>
+                <?php
+                if (!empty($errorMessage)) {
+                    echo "
+                            <div class='popup fixed top-0 left-0 w-full h-screen bg-black bg-opacity-80' style='display:block;' id='okid' style='border-radius:10px; display:none;'>
+                                <div class='fixed top-[30%] right-[30%] w-[40%] p-7 bg-white py-2 text-center text-black'>
+                                    <script src='https://cdn.lordicon.com/lordicon.js'></script>
+                                    <lord-icon
+                                        src='https://cdn.lordicon.com/wkppeqfv.json'
+                                        trigger='loop'
+                                        stroke='bold'
+                                     colors='primary:#e83a30,secondary:#e83a30'
+                                        style='width:130px;height:130px'>
+                                    </lord-icon>
+                                    <p class='mb-[7%]'>$errorMessage</p>
+                                    <button id='OK'>OK</button>
+                                </div>
+                            </div>
+                            ";
+                    $errorMessage = "";
+                }
+                ?>
+
                 <!-- form -->
-                <div class="hidden fixed top-0 left-0 w-full h-screen bg-black bg-opacity-80" id="formAdd">
+                <div class="fixed hidden top-0 left-0 w-full h-screen bg-black bg-opacity-80" id="formAdd">
                     <div class="fixed top-[30%] right-[30%] w-[45%] h-[40%] rounded-3xl bg-white py-2">
                         <button class="top-0 mx-[94%] w-10 h-10 rounded-full border-2 p-1 " id="closeButton">
                             <img src="../../images/close.svg" alt="close">
@@ -295,15 +350,14 @@ require_once 'dbh.inc.php';
                         <div class="py-2 px-10 text-center">
                             <h3 class=" text-3xl subpixel-antialiased font-bold mb-[2%] dark:text-indigo-950">
                                 Informations</h3>
-                            <form class="bg-popup flex flex-col text-gray-500">
+                            <form class="bg-popup flex flex-col text-gray-500" method="post">
                                 <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="name"
-                                    id="name">
-                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="project"
-                                    id="project">
-                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="contact"
+                                    value="<?php echo $name; ?>" name="name" id="name">
+                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="email" name="email"
+                                    value="<?php echo $email; ?>" placeholder="E-mail Address" id="project">
+                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="password"
+                                    placeholder="PassWord" value="<?php echo $password; ?>" name="password"
                                     id="contact">
-                                <input class="mb-4 rounded py-[1%] pl-[2%] border" type="text" placeholder="Deadline"
-                                    id="deadline">
                                 <button
                                     class="text-white text-2xl font-bold border mx-auto w-52 h-14 rounded-2xl bg-yellow-500"
                                     type="submit" id="save">save</button>
@@ -337,28 +391,44 @@ require_once 'dbh.inc.php';
                     </div>
                 </div>
                 <!-- popup -->
-                <div class="popup hidden fixed top-0 left-0 w-full h-screen bg-black bg-opacity-80">
-                    <div class="fixed top-[30%] right-[30%] w-[40%] p-7 bg-white py-2 text-center text-black">
-                        <img class="mx-auto w-16 h-16" src="../../images/done.svg" alt="">
-                        <p class="mb-[7%]">Your project has been saved successfully</p>
-                        <button id="OK">OK</button>
-                    </div>
-                </div>
-
-                <div class="popup-delet hidden fixed top-0 left-0 w-full h-screen bg-black bg-opacity-80">
-                    <div class="fixed top-[30%] right-[30%] w-[40%] p-7 bg-white py-2 text-center text-black">
-                        <img class="mx-auto w-16 h-16" src="../../images/done.svg" alt="">
-                        <p class="mb-[7%]">This project has been successfully deleted</p>
-                        <button id="OK-D">OK</button>
-                    </div>
-                </div>
-                <!-- <div class="hidden search">
-            <div class="flex flex-row justify-between text-xs border-4 w-72 rounded-3xl p-1 dark:bg-indigo-950 dark:border-none">
-                <p class="ml-[6%]">search for anyting</p>
-                <img class="mr-[10%]" src="../images/search-2905 1.svg" alt="search">
-            </div>
-        </div> -->
+                <?php
+                if (!empty($successMessage)) {
+                    echo "
+                        <div class='popup fixed top-0 left-0 w-full h-screen bg-black bg-opacity-80' id='sok' style='display:none;'>
+                            <div class='fixed top-[30%] right-[30%] w-[40%] p-7 bg-white py-2 text-center text-black'>
+                                <img class='mx-auto w-16 h-16' src='../../images/done.svg' alt=''>
+                                <p class='mb-[7%]'>$successMessage</p>
+                                <button id='OKi'>OK</button>
+                            </div>
+                        </div>
+                        ";
+                }
+                ?>
             </section>
         </main class="bg-slate-50">
+        <script>
+            const closeButton = document.querySelector('#closeButton');
+            const addform = document.querySelector('#formAdd');
+            const add = document.querySelector('#add');
+
+            const ok = document.querySelector('#OK');
+            const OKi = document.querySelector('#OKi');
+
+            const okid = document.querySelector('#okid');
+            const sok = document.querySelector('#sok');
+
+            closeButton.addEventListener('click', () => {
+                addform.style.display = 'none';
+            });
+            add.addEventListener('click', () => {
+                addform.style.display = 'block';
+            });
+            ok.addEventListener('click', () => {
+                okid.style.display = 'none';
+            });
+            Oki.addEventListener('click', () => {
+                sok.style.display = 'none';
+            });
+        </script>
 
 </html>
