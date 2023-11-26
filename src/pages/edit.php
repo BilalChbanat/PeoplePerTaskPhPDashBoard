@@ -1,5 +1,6 @@
 <?php
 include 'dbh.inc.php';
+$id_user = "";
 $name = "";
 $email = "";
 $password = "";
@@ -7,40 +8,33 @@ $password = "";
 
 $errorMessage = "";
 $successMessage = "";
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    do {
-        if (empty($name) || empty($email) || empty($password)) {
-            $errorMessage = "The fields can't be blank";
-            break;
-        }
-
-        // add the user to the database
-
-        $sqlAdd = "INSERT INTO user (name_user, password, email) 
-        VALUES ('$name', '$password', '$email')";
-        $resultadd = mysqli_query($conn, $sqlAdd);
-
-        if (!$resultadd) {
-            $errorMessage = "Invalide query " . $conn->error;
-            break;
-        }
+if (isset($_GET['id'])) {
 
 
+    $id_user = $_GET["id"];
 
-        $name = "";
-        $email = "";
-        $password = "";
+    $sqledit = "SELECT * FROM user WHERE id_user=$id_user";
+    $resultat = mysqli_query($conn, $sqledit);
+    $row = mysqli_fetch_assoc($resultat);
+    $name = $row["name_user"];
+    $email = $row["email"];
+    $password = $row["password"];
 
-        $successMessage = "User added successfully";
 
-        header('location: dashclient.php');
-        exit;
-    } while (false);
 }
+
+if (isset($_POST['save'])) {
+    $id_user = $_POST['id_user'];
+    $namee = $_POST["name"];
+    $emaill = $_POST["email"];
+    $passwordd = $_POST["password"];
+    $sqle = "UPDATE user SET 
+        name_user = '$namee', email = '$emaill', password = '$passwordd' WHERE id_user = $id_user";
+    mysqli_query($conn, $sqle);
+    header("location: dashclient.php");
+}
+
+
 ?>
 
 
@@ -263,62 +257,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </nav>
             <section>
-                <div
-                    class="table-auto text-black dark:text-white dark:bg-indigo-950 p-4 w-[90%] m-[2%] pl-[5%] py-[2%] rounded-2xl border dark:border-none">
-                    <table class="w-[95%] border-2 border-slate- dark:border-white text-center">
-                        <tr class="border-b-2 text-xl bg-mainBlue dark:bg-purple-500 text-white">
-                            <th class="py-2">Id</th>
-                            <th>Name</th>
-                            <th>email</th>
-                            <th>Password</th>
-                            <th></th>
-                        </tr>
-                        <tbody id="tbody">
-                            <?php
-                            $sql = "SELECT * FROM user";
-                            $result = mysqli_query($conn, $sql);
-                            if (mysqli_num_rows($result) > 0):
-                                while ($row = mysqli_fetch_assoc($result)):
-                                    echo "<tr>
-                                        <td>$row[id_user]</td>
-                                        <td>$row[name_user]</td>
-                                        <td>$row[email]</td>
-                                        <td>$row[password]</td>
-                                        <td>
-                                            <a href='./edit.php?id=$row[id_user]'>
-                                                <script src='https://cdn.lordicon.com/lordicon.js'></script>
-                                                <lord-icon src='https://cdn.lordicon.com/ylvuooxd.json' trigger='loop'
-                                                    delay='50' state='hover-line'
-                                                    colors='primary:#b4b4b4,secondary:#545454,tertiary:#66ee78,quaternary:#3a3347'
-                                                    style='width:25px;height:25px'>
-                                                </lord-icon>
-                                            </a>
-                                            <a href='./delete.php?id=$row[id_user]'>
-                                                <script src='https://cdn.lordicon.com/lordicon.js'></script>
-                                                <lord-icon src='https://cdn.lordicon.com/hjbrplwk.json' trigger='loop'
-                                                    delay='500'
-                                                    colors='primary:#646e78,secondary:#c71f16,tertiary:#ffffff,quaternary:#3a3347'
-                                                    style='width:25px;height:25px'>
-                                                </lord-icon>
-                                            </a>
-                                        </td>
-                                    </tr>";
-                                endwhile;
-                            endif;
-                            mysqli_close($conn);
-                            ?>
-                        </tbody>
-                    </table>
-                    <button id="add"
-                        class="bg-AddB dark:bg-slate-900 dark:border-violet-400 flex items-center justify-center rounded-[58px] h-16 border-AddCB border-2 w-[30%]  mx-[35%] mt-[2%] text-white dark:text-yellow-400 font-poppins">
-                        <script src="https://cdn.lordicon.com/lordicon-1.4.0.js"></script>
-                        <script src="https://cdn.lordicon.com/lordicon-1.4.0.js"></script>
-                        <lord-icon src="https://cdn.lordicon.com/hqymfzvj.json" trigger="loop" delay="28"
-                            colors="primary:#ffffff" style="width:28px;height:28px">
-                        </lord-icon>
-                        <p>Add a New Project</p>
-                    </button>
-                </div>
                 <?php
                 if (!empty($errorMessage)) {
                     echo "
@@ -342,7 +280,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 ?>
 
                 <!-- form -->
-                <div class="fixed hidden top-0 left-0 w-full h-screen bg-black bg-opacity-80" id="formAdd">
+                <div class="fixed top-0 left-0 w-full h-screen bg-black bg-opacity-80" id="formAdd">
                     <div class="fixed top-[30%] right-[30%] w-[45%] h-[40%] rounded-3xl bg-white py-2">
                         <button class="top-0 mx-[94%] w-10 h-10 rounded-full border-2 p-1 " id="closeButton">
                             <img src="../../images/close.svg" alt="close">
@@ -351,6 +289,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <h3 class=" text-3xl subpixel-antialiased font-bold mb-[2%] dark:text-indigo-950">
                                 Informations</h3>
                             <form class="bg-popup flex flex-col text-gray-500" method="post">
+                                <input type="hidden" name="id_user" value="<?php echo $id_user; ?>">
                                 <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="name"
                                     value="<?php echo $name; ?>" name="name" id="name">
                                 <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="email" name="email"
@@ -358,9 +297,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="password"
                                     placeholder="PassWord" value="<?php echo $password; ?>" name="password"
                                     id="contact">
-                                <button
+                                <input
                                     class="text-white text-2xl font-bold border mx-auto w-52 h-14 rounded-2xl bg-yellow-500"
-                                    type="submit" id="save">save</button>
+                                    type="submit" name="save" id="save" value="save">
                             </form>
                         </div>
                     </div>
