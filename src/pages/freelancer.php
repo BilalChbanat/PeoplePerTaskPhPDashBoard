@@ -1,46 +1,69 @@
 <?php
 include 'dbh.inc.php';
 $name = "";
-$email = "";
-$password = "";
-
+$competence = "";
+$id_user = "";
 
 $errorMessage = "";
 $successMessage = "";
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $competence = $_POST['competence'];
+
+    // Check if id_user is set in $_POST
+    $id_user = isset($_POST['id_user']) ? $_POST['id_user'] : null;
 
     do {
-        if (empty($name) || empty($email) || empty($password)) {
+        if (empty($name) || empty($competence) || empty($id_user)) {
             $errorMessage = "The fields can't be blank";
             break;
         }
 
-        // add the user to the database
+        // Check if the specified id_user exists in the user table
+        $checkUserQuery = "SELECT id_user FROM user WHERE id_user = '$id_user'";
+        $userResult = mysqli_query($conn, $checkUserQuery);
 
-        $sqlAdd = "INSERT INTO user (name_user, password, email) 
-        VALUES ('$name', '$password', '$email')";
-        $resultadd = mysqli_query($conn, $sqlAdd);
-
-        if (!$resultadd) {
-            $errorMessage = "Invalide query " . $conn->error;
+        if (mysqli_num_rows($userResult) == 0) {
+            $errorMessage = "Invalid user ID";
             break;
         }
 
+        // Add the freelancer to the database
+        $sqlAdd = "INSERT INTO freelancers (name_freelancer, Competences, id_user) 
+                    VALUES ('$name', '$competence', '$id_user')";
+        $resultadd = mysqli_query($conn, $sqlAdd);
 
+        if (!$resultadd) {
+            $errorMessage = "Invalid query " . $conn->error;
+            break;
+        }
 
         $name = "";
-        $email = "";
-        $password = "";
+        $competence = "";
+        $id_user = "";
 
         $successMessage = "User added successfully";
 
-        header('location: dashclient.php');
+        header('location: freelancer.php');
         exit;
     } while (false);
 }
+?>
+
+
+
+
+<?php
+$sql = "SELECT id_user, name_user FROM user";
+$re = mysqli_query($conn, $sql);
+if (mysqli_num_rows($re) > 0):
+    ob_start();
+    while ($row = mysqli_fetch_assoc($re)):
+        echo "<option value=" . $row['id_user'] . ">" . $row['id_user'] . "-" . $row['name_user'] . "</option>";
+    endwhile;
+    $opt = ob_get_clean();
+endif;
 ?>
 
 
@@ -269,21 +292,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <tr class="border-b-2 text-xl bg-mainBlue dark:bg-purple-500 text-white">
                             <th class="py-2">Id</th>
                             <th>Name</th>
-                            <th>email</th>
-                            <th>Password</th>
+                            <th>Competences</th>
+                            <th>E-mail</th>
                             <th></th>
                         </tr>
                         <tbody id="tbody">
                             <?php
-                            $sql = "SELECT * FROM user";
+                            $sql = "SELECT * FROM freelancers INNER JOIN  user ON user.id_user = freelancers.id_user";
                             $result = mysqli_query($conn, $sql);
                             if (mysqli_num_rows($result) > 0):
                                 while ($row = mysqli_fetch_assoc($result)):
                                     echo "<tr>
-                                        <td>$row[id_user]</td>
-                                        <td>$row[name_user]</td>
+                                        <td>$row[id_freelancer]</td>
+                                        <td>$row[name_freelancer]</td>
+                                        <td>$row[Competences]</td>
                                         <td>$row[email]</td>
-                                        <td>$row[password]</td>
                                         <td>
                                             <a href='./edit.php?id=$row[id_user]'>
                                                 <script src='https://cdn.lordicon.com/lordicon.js'></script>
@@ -353,11 +376,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <form class="bg-popup flex flex-col text-gray-500" method="post">
                                 <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="name"
                                     value="<?php echo $name; ?>" name="name" id="name">
-                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="email" name="email"
-                                    value="<?php echo $email; ?>" placeholder="E-mail Address" id="project">
-                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="password"
-                                    placeholder="PassWord" value="<?php echo $password; ?>" name="password"
-                                    id="contact">
+                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" name="competence"
+                                    value="<?php echo $competence; ?>" placeholder="Competence" id="project">
+                                <select name="id_user" id="id_user">
+                                    <?= $opt ?>
+                                </select>
                                 <button
                                     class="text-white text-2xl font-bold border mx-auto w-52 h-14 rounded-2xl bg-yellow-500"
                                     type="submit" id="save">save</button>
@@ -377,12 +400,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <form id="updateForm" class="bg-popup flex flex-col text-gray-500">
                                 <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="name"
                                     id="update-name">
-                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="project"
-                                    id="update-project">
+                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text"
+                                    placeholder="Competence" id="update-project">
                                 <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="contact"
                                     id="update-contact">
-                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="Deadline"
-                                    id="update-deadline">
                                 <button
                                     class="text-white text-2xl font-bold border mx-auto w-52 h-14 rounded-2xl bg-yellow-500"
                                     type="button" id="update-save">Save</button>
