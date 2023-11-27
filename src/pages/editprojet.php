@@ -8,44 +8,32 @@ $id_cat = "";
 $errorMessage = "";
 $successMessage = "";
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $title_projet = $_POST['title_projet'];
-    $descreption = $_POST['descreption'];
 
-    $id_user = isset($_POST['id_user']) ? $_POST['id_user'] : null;
-    $id_cat = isset($_POST['id_cat']) ? $_POST['id_cat'] : null;
+if (isset($_GET['id'])) {
+    $id_projet = $_GET["id"];
 
-    do {
-        if (empty($title_projet) || empty($descreption)) {
-            $errorMessage = "The fields can't be blank";
-            break;
-        }
+    $sqledit = "SELECT * FROM projets WHERE id_projet=$id_projet";
+    $resultat = mysqli_query($conn, $sqledit);
+    $row = mysqli_fetch_assoc($resultat);
+    $title_projet = $row["title_projet"];
+    $descreption = $row["descreption"];
+    $id_cat = $row["id_cat"];
+    $id_user = $row["id_user"];
+}
 
-        $checkUserQuery = "SELECT id_cat FROM category WHERE id_cat = $id_cat";
-        $userResult = mysqli_query($conn, $checkUserQuery);
 
-        if (mysqli_num_rows($userResult) == 0) {
-            $errorMessage = "Invalid user ID";
-            break;
-        }
+if (isset($_POST['save'])) {
+    $namee = $_POST["title_projet"];
+    $competenced = $_POST["descreption"];
+    $id_catt = $_POST["id_cat"];
+    $id_userr = $_POST["id_user"]; // Corrected variable name
+    $sqle = "UPDATE projets SET 
+    title_projet = '$namee', descreption = '$competenced', id_cat = $id_catt , id_user = $id_userr  WHERE id_projet = $id_projet";
+    mysqli_query($conn, $sqle);
 
-        $sqlAddcat = "INSERT INTO projets (title_projet, descreption, id_cat , id_user) 
-                    VALUES ('$title_projet', '$descreption', $id_cat, $id_user)";
-        $resultaddcat = mysqli_query($conn, $sqlAddcat);
-
-        if (!$resultaddcat) {
-            $errorMessage = "Invalid query " . $conn->error;
-            break;
-        }
-
-        $successMessage = "User added successfully";
-
-        header('location: projects.php');
-        exit;
-    } while (false);
+    header("location: projects.php");
 }
 ?>
-
 <?php
 $sql = "SELECT id_user, name_user FROM user";
 $re = mysqli_query($conn, $sql);
@@ -289,70 +277,6 @@ endif;
                 </div>
             </nav>
             <section>
-                <div
-                    class="table-auto text-black dark:text-white dark:bg-indigo-950 p-4 w-[90%] m-[2%] pl-[5%] py-[2%] rounded-2xl border dark:border-none">
-                    <table class="w-[95%] border-2 border-slate- dark:border-white text-center">
-                        <tr class="border-b-2 text-xl bg-mainBlue dark:bg-purple-500 text-white">
-                            <th class="py-2">Id</th>
-                            <th>Title</th>
-                            <th>Descreption</th>
-                            <th>Category</th>
-                            <th>User</th>
-                            <th></th>
-                        </tr>
-                        <tbody id="tbody">
-                            <?php
-                            $sql = "SELECT projets.id_projet, projets.title_projet, projets.descreption, category.name_cat, user.name_user
-                            FROM projets
-                            INNER JOIN user ON user.id_user = projets.id_user
-                            INNER JOIN category ON category.id_cat = projets.id_cat";
-
-                            $result = mysqli_query($conn, $sql);
-
-                            if (mysqli_num_rows($result) > 0):
-                                while ($row = mysqli_fetch_assoc($result)):
-                                    echo "<tr>
-                                    <td>$row[id_projet]</td>
-                                    <td>$row[title_projet]</td>
-                                    <td>$row[descreption]</td>
-                                    <td>$row[name_cat]</td>
-                                    <td>$row[name_user]</td>
-                                    <td>
-                                        <a href='./editprojet.php?id=$row[id_projet]'>
-                                                <script src='https://cdn.lordicon.com/lordicon.js'></script>
-                                                <lord-icon src='https://cdn.lordicon.com/ylvuooxd.json' trigger='loop'
-                                                    delay='50' state='hover-line'
-                                                    colors='primary:#b4b4b4,secondary:#545454,tertiary:#66ee78,quaternary:#3a3347'
-                                                    style='width:25px;height:25px'>
-                                                </lord-icon>
-                                            </a>
-                                            <a href='./deleteprojet.php?id=$row[id_projet]'>
-                                                <script src='https://cdn.lordicon.com/lordicon.js'></script>
-                                                <lord-icon src='https://cdn.lordicon.com/hjbrplwk.json' trigger='loop'
-                                                    delay='500'
-                                                    colors='primary:#646e78,secondary:#c71f16,tertiary:#ffffff,quaternary:#3a3347'
-                                                    style='width:25px;height:25px'>
-                                                </lord-icon>
-                                            </a>
-                                        </td>
-                                    </tr>";
-                                endwhile;
-                            endif;
-                            mysqli_close($conn);
-                            ?>
-                        </tbody>
-
-                    </table>
-                    <button id="add"
-                        class="bg-AddB dark:bg-slate-900 dark:border-violet-400 flex items-center justify-center rounded-[58px] h-16 border-AddCB border-2 w-[30%]  mx-[35%] mt-[2%] text-white dark:text-yellow-400 font-poppins">
-                        <script src="https://cdn.lordicon.com/lordicon-1.4.0.js"></script>
-                        <script src="https://cdn.lordicon.com/lordicon-1.4.0.js"></script>
-                        <lord-icon src="https://cdn.lordicon.com/hqymfzvj.json" trigger="loop" delay="28"
-                            colors="primary:#ffffff" style="width:28px;height:28px">
-                        </lord-icon>
-                        <p>Add a New Project</p>
-                    </button>
-                </div>
                 <?php
                 if (!empty($errorMessage)) {
                     echo "
@@ -376,7 +300,7 @@ endif;
                 ?>
 
                 <!-- form -->
-                <div class="fixed hidden top-0 left-0 w-full h-screen bg-black bg-opacity-80" id="formAdd">
+                <div class="fixed top-0 left-0 w-full h-screen bg-black bg-opacity-80" id="formAdd">
                     <div class="fixed top-[30%] right-[30%] w-[45%] h-[40%] rounded-3xl bg-white py-2">
                         <button class="top-0 mx-[94%] w-10 h-10 rounded-full border-2 p-1 " id="closeButton">
                             <img src="../../images/close.svg" alt="close">
@@ -385,6 +309,7 @@ endif;
                             <h3 class=" text-3xl subpixel-antialiased font-bold mb-[2%] dark:text-indigo-950">
                                 Informations</h3>
                             <form class="bg-popup flex flex-col text-gray-500" method="post">
+                                <input type="hidden" name="id_projet" value="<?php echo $id_projet; ?>">
                                 <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="name"
                                     value="<?php echo $title_projet; ?>" name="title_projet" id="name">
                                 <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" name="descreption"
@@ -397,7 +322,7 @@ endif;
                                 </select>
                                 <button
                                     class="text-white text-2xl font-bold border mx-auto w-52 h-14 rounded-2xl bg-yellow-500"
-                                    type="submit" id="save">save</button>
+                                    name="save" type="submit" id="save">save</button>
                             </form>
                         </div>
                     </div>
