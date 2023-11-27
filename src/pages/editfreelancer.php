@@ -1,66 +1,38 @@
 <?php
 include 'dbh.inc.php';
+$id_freelancer = "";
 $name = "";
 $competence = "";
-$id_user = "";
+
+
 
 $errorMessage = "";
 $successMessage = "";
+if (isset($_GET['id'])) {
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['name'];
-    $competence = $_POST['competence'];
 
-    $id_user = isset($_POST['id_user']) ? $_POST['id_user'] : null;
+    $id_freelancer = $_GET["id"];
 
-    do {
-        if (empty($name) || empty($competence) || empty($id_user)) {
-            $errorMessage = "The fields can't be blank";
-            break;
-        }
+    $sqledit = "SELECT * FROM freelancers WHERE id_freelancer=$id_freelancer";
+    $resultat = mysqli_query($conn, $sqledit);
+    $row = mysqli_fetch_assoc($resultat);
+    $name = $row["name_freelancer"];
+    $competence = $row["Competences"];
 
-        $checkUserQuery = "SELECT id_user FROM user WHERE id_user = '$id_user'";
-        $userResult = mysqli_query($conn, $checkUserQuery);
 
-        if (mysqli_num_rows($userResult) == 0) {
-            $errorMessage = "Invalid user ID";
-            break;
-        }
-
-        $sqlAdd = "INSERT INTO freelancers (name_freelancer, Competences, id_user) 
-                    VALUES ('$name', '$competence', '$id_user')";
-        $resultadd = mysqli_query($conn, $sqlAdd);
-
-        if (!$resultadd) {
-            $errorMessage = "Invalid query " . $conn->error;
-            break;
-        }
-
-        $name = "";
-        $competence = "";
-        $id_user = "";
-
-        $successMessage = "User added successfully";
-
-        header('location: freelancer.php');
-        exit;
-    } while (false);
 }
-?>
+
+if (isset($_POST['save'])) {
+    $id_freelancer = $_POST['id_freelancer'];
+    $namee = $_POST["name"];
+    $competenced = $_POST["competence"];
+    $sqle = "UPDATE freelancers SET 
+        name_freelancer = '$namee', Competences = '$competenced' WHERE id_freelancer = $id_freelancer";
+    mysqli_query($conn, $sqle);
+    header("location: freelancer.php");
+}
 
 
-
-
-<?php
-$sql = "SELECT id_user, name_user FROM user";
-$re = mysqli_query($conn, $sql);
-if (mysqli_num_rows($re) > 0):
-    ob_start();
-    while ($row = mysqli_fetch_assoc($re)):
-        echo "<option value=" . $row['id_user'] . ">" . $row['id_user'] . "-" . $row['name_user'] . "</option>";
-    endwhile;
-    $opt = ob_get_clean();
-endif;
 ?>
 
 
@@ -92,7 +64,7 @@ endif;
                     <lord-icon src="https://cdn.lordicon.com/zrtfxghu.json" trigger="loop" colors="primary:#6366F1"
                         style="width:34px;height:34px" class="dark:color-whit">
                     </lord-icon>
-                    <a href="#"><span class="mx-4">Users</span></a>
+                    <a href="dashstats.php"><span class="mx-4">Users</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
@@ -102,7 +74,7 @@ endif;
                             colors="primary:#6366F1,secondary:#6366F1" style="width:33px;height:33px;font-weight:700;">
                         </lord-icon>
                     </b>
-                    <a href="./freelancer.php"><span class="mx-4">Freelancers</span></a>
+                    <a href="#"><span class="mx-4">Freelancers</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
@@ -110,7 +82,7 @@ endif;
                     <lord-icon src="https://cdn.lordicon.com/bgitlnnj.json" trigger="loop"
                         colors="primary:#3080e8,secondary:#b4b4b4" style="width:33px;height:33px">
                     </lord-icon>
-                    <a href="./category.php"><span class="mx-4">Category</span></a>
+                    <a href="#"><span class="mx-4">Category</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
@@ -118,7 +90,7 @@ endif;
                     <lord-icon src="https://cdn.lordicon.com/lecprnjb.json" trigger="loop" colors="primary:#6366F1"
                         style="width:33px;height:33px">
                     </lord-icon>
-                    <a href="./projects.php"><span class="mx-4">Projects</span></a>
+                    <a href="#"><span class="mx-4">Projects</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700 hover:scale-110 rounded mb-[10%]">
@@ -126,7 +98,7 @@ endif;
                     <lord-icon src="https://cdn.lordicon.com/ayhtotha.json" trigger="loop" colors="primary:#3080e8"
                         style="width:33px;height:33px">
                     </lord-icon>
-                    <a href="./testimonial.php"><span class="mx-4">testimonial</span></a>
+                    <a href="#"><span class="mx-4">testimonial</span></a>
                 </li>
             </ul>
             <hr class="mb-[10%]">
@@ -283,62 +255,6 @@ endif;
                 </div>
             </nav>
             <section>
-                <div
-                    class="table-auto text-black dark:text-white dark:bg-indigo-950 p-4 w-[90%] m-[2%] pl-[5%] py-[2%] rounded-2xl border dark:border-none">
-                    <table class="w-[95%] border-2 border-slate- dark:border-white text-center">
-                        <tr class="border-b-2 text-xl bg-mainBlue dark:bg-purple-500 text-white">
-                            <th class="py-2">Id</th>
-                            <th>Name</th>
-                            <th>Competences</th>
-                            <th>E-mail</th>
-                            <th></th>
-                        </tr>
-                        <tbody id="tbody">
-                            <?php
-                            $sql = "SELECT * FROM freelancers INNER JOIN  user ON user.id_user = freelancers.id_user";
-                            $result = mysqli_query($conn, $sql);
-                            if (mysqli_num_rows($result) > 0):
-                                while ($row = mysqli_fetch_assoc($result)):
-                                    echo "<tr>
-                                        <td>$row[id_freelancer]</td>
-                                        <td>$row[name_freelancer]</td>
-                                        <td>$row[Competences]</td>
-                                        <td>$row[email]</td>
-                                        <td>
-                                            <a href='./editfreelancer.php?id=$row[id_freelancer]'>
-                                                <script src='https://cdn.lordicon.com/lordicon.js'></script>
-                                                <lord-icon src='https://cdn.lordicon.com/ylvuooxd.json' trigger='loop'
-                                                    delay='50' state='hover-line'
-                                                    colors='primary:#b4b4b4,secondary:#545454,tertiary:#66ee78,quaternary:#3a3347'
-                                                    style='width:25px;height:25px'>
-                                                </lord-icon>
-                                            </a>
-                                            <a href='./deletefree.php?id=$row[id_freelancer]'>
-                                                <script src='https://cdn.lordicon.com/lordicon.js'></script>
-                                                <lord-icon src='https://cdn.lordicon.com/hjbrplwk.json' trigger='loop'
-                                                    delay='500'
-                                                    colors='primary:#646e78,secondary:#c71f16,tertiary:#ffffff,quaternary:#3a3347'
-                                                    style='width:25px;height:25px'>
-                                                </lord-icon>
-                                            </a>
-                                        </td>
-                                    </tr>";
-                                endwhile;
-                            endif;
-                            mysqli_close($conn);
-                            ?>
-                        </tbody>
-                    </table>
-                    <button id="add"
-                        class="bg-AddB dark:bg-slate-900 dark:border-violet-400 flex items-center justify-center rounded-[58px] h-16 border-AddCB border-2 w-[30%]  mx-[35%] mt-[2%] text-white dark:text-yellow-400 font-poppins">
-                        <script src="https://cdn.lordicon.com/lordicon-1.4.0.js"></script>
-                        <script src="https://cdn.lordicon.com/lordicon-1.4.0.js"></script>
-                        <lord-icon src="https://cdn.lordicon.com/hqymfzvj.json" trigger="loop" delay="28"
-                            colors="primary:#ffffff" style="width:28px;height:28px">
-                        </lord-icon>
-                        <p>Add a New Project</p>
-                    </button>
-                </div>
                 <?php
                 if (!empty($errorMessage)) {
                     echo "
@@ -362,7 +278,7 @@ endif;
                 ?>
 
                 <!-- form -->
-                <div class="fixed hidden top-0 left-0 w-full h-screen bg-black bg-opacity-80" id="formAdd">
+                <div class="fixed top-0 left-0 w-full h-screen bg-black bg-opacity-80" id="formAdd">
                     <div class="fixed top-[30%] right-[30%] w-[45%] h-[40%] rounded-3xl bg-white py-2">
                         <button class="top-0 mx-[94%] w-10 h-10 rounded-full border-2 p-1 " id="closeButton">
                             <img src="../../images/close.svg" alt="close">
@@ -371,16 +287,14 @@ endif;
                             <h3 class=" text-3xl subpixel-antialiased font-bold mb-[2%] dark:text-indigo-950">
                                 Informations</h3>
                             <form class="bg-popup flex flex-col text-gray-500" method="post">
+                                <input type="hidden" name="id_freelancer" value="<?php echo $id_freelancer; ?>">
                                 <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="name"
                                     value="<?php echo $name; ?>" name="name" id="name">
                                 <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" name="competence"
                                     value="<?php echo $competence; ?>" placeholder="Competence" id="project">
-                                <select name="id_user" id="id_user">
-                                    <?= $opt ?>
-                                </select>
-                                <button
+                                <input
                                     class="text-white text-2xl font-bold border mx-auto w-52 h-14 rounded-2xl bg-yellow-500"
-                                    type="submit" id="save">save</button>
+                                    type="submit" name="save" id="save" value="save">
                             </form>
                         </div>
                     </div>
@@ -397,10 +311,12 @@ endif;
                             <form id="updateForm" class="bg-popup flex flex-col text-gray-500">
                                 <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="name"
                                     id="update-name">
-                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text"
-                                    placeholder="Competence" id="update-project">
+                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="project"
+                                    id="update-project">
                                 <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="contact"
                                     id="update-contact">
+                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="Deadline"
+                                    id="update-deadline">
                                 <button
                                     class="text-white text-2xl font-bold border mx-auto w-52 h-14 rounded-2xl bg-yellow-500"
                                     type="button" id="update-save">Save</button>
