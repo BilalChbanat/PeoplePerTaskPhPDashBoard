@@ -236,22 +236,33 @@
             <li
               class="flex flex-row border border-mainBlue w-[50%] md:w-[20%] h-24 px-[1%] rounded-2xl items-center mx-auto md:ml-[7%]">
               <img class="h-[50%] mr-[10%]" src="../../images/fleche1.svg" alt="niveau">
-              <h2>This Month's Revenue <br><span class="text-AddCB">$632.000</span></h2>
+              <h2>Users <br><span class="text-AddCB">$632.000</span></h2>
             </li>
             <li
               class="flex flex-row border border-mainBlue w-[50%] md:w-[20%] h-24 px-[1%] rounded-2xl items-center mx-auto md:ml-[7%]">
               <img class="h-[50%] mr-[10%]" src="../../images/fleche2.svg" alt="niveau">
-              <h2>Projects Accepted<br><span class="text-AddCB">$632.000</span></h2>
+              <h2>Projects <br><span class="text-AddCB">$632.000</span></h2>
+            </li>
+            <?php include('dbh.inc.php'); ?>
+            <li
+              class="flex flex-row border border-mainBlue w-[50%] md:w-[20%] h-24 px-[1%] rounded-2xl items-center mx-auto md:ml-[7%]">
+              <img class="h-[50%] mr-[10%]" src="../../images/fleche2.svg" alt="niveau">
+              <h2>Freelancers</h2>
+
+              <?php
+              $dash_cat_query = "SELECT * FROM category";
+              $dash_cat_query_run = mysqli_query($conn, $dash_cat_query);
+              if ($category_total = mysqli_num_rows($dash_cat_query_run)) {
+                echo '<br> <h2>' . $category_total . '</h2>';
+              } else {
+                echo "<br> <h4> No Data </h4>";
+              }
+              ?>
             </li>
             <li
               class="flex flex-row border border-mainBlue w-[50%] md:w-[20%] h-24 px-[1%] rounded-2xl items-center mx-auto md:ml-[7%]">
               <img class="h-[50%] mr-[10%]" src="../../images/fleche2.svg" alt="niveau">
-              <h2>Delivered On Time<br><span class="text-AddCB">$632.000</span></h2>
-            </li>
-            <li
-              class="flex flex-row border border-mainBlue w-[50%] md:w-[20%] h-24 px-[1%] rounded-2xl items-center mx-auto md:ml-[7%]">
-              <img class="h-[50%] mr-[10%]" src="../../images/fleche2.svg" alt="niveau">
-              <h2>Responses On Time<br><span class="text-AddCB">$632.000</span></h2>
+              <h2>Total categories<br><span class="text-AddCB">$632.000</span></h2>
             </li>
           </ul>
         </div>
