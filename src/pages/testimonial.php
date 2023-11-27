@@ -1,27 +1,26 @@
 <?php
 include 'dbh.inc.php';
-$name = "";
-$email = "";
-$password = "";
+$commentaire = "";
+$id_user = "";
 
 
 $errorMessage = "";
 $successMessage = "";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
+    $commentaire = $_POST['commentaire'];
+    // =============================
+    $id_user = isset($_POST['id_user']) ? $_POST['id_user'] : null;
+    // =============================
     do {
-        if (empty($name) || empty($email) || empty($password)) {
+        if (empty($commentaire)) {
             $errorMessage = "The fields can't be blank";
             break;
         }
 
-        // add the user to the database
+        // add the testimonial to the database
 
-        $sqlAdd = "INSERT INTO user (name_user, password, email) 
-        VALUES ('$name', '$password', '$email')";
+        $sqlAdd = "INSERT INTO testimonial (commentaire, id_user) VALUES ('$commentaire', $id_user);";
+
         $resultadd = mysqli_query($conn, $sqlAdd);
 
         if (!$resultadd) {
@@ -29,18 +28,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             break;
         }
 
-
-
-        $name = "";
-        $email = "";
-        $password = "";
+        $commentaire = "";
 
         $successMessage = "User added successfully";
 
-        header('location: dashclient.php');
+        header('location: testimonial.php');
         exit;
     } while (false);
 }
+?>
+
+
+
+<?php
+$sql = "SELECT id_user, name_user FROM user";
+$re = mysqli_query($conn, $sql);
+if (mysqli_num_rows($re) > 0):
+    ob_start();
+    while ($row = mysqli_fetch_assoc($re)):
+        echo "<option value=" . $row['id_user'] . ">" . $row['id_user'] . "-" . $row['name_user'] . "</option>";
+    endwhile;
+    $opt = ob_get_clean();
+endif;
 ?>
 
 
@@ -268,32 +277,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <table class="w-[95%] border-2 border-slate- dark:border-white text-center">
                         <tr class="border-b-2 text-xl bg-mainBlue dark:bg-purple-500 text-white">
                             <th class="py-2">Id</th>
-                            <th>Name</th>
-                            <th>email</th>
-                            <th>Password</th>
+                            <th>Commentaire</th>
+                            <th>User name</th>
                             <th></th>
                         </tr>
                         <tbody id="tbody">
                             <?php
-                            $sql = "SELECT * FROM user";
+                            $sql = "SELECT * FROM testimonial INNER JOIN  user ON user.id_user = testimonial.id_user";
                             $result = mysqli_query($conn, $sql);
                             if (mysqli_num_rows($result) > 0):
                                 while ($row = mysqli_fetch_assoc($result)):
                                     echo "<tr>
-                                        <td>$row[id_user]</td>
+                                        <td>$row[id_temoignage]</td>
+                                        <td>$row[commentaire]</td>
                                         <td>$row[name_user]</td>
-                                        <td>$row[email]</td>
-                                        <td>$row[password]</td>
                                         <td>
-                                            <a href='./edit.php?id=$row[id_user]'>
-                                                <script src='https://cdn.lordicon.com/lordicon.js'></script>
-                                                <lord-icon src='https://cdn.lordicon.com/ylvuooxd.json' trigger='loop'
-                                                    delay='50' state='hover-line'
-                                                    colors='primary:#b4b4b4,secondary:#545454,tertiary:#66ee78,quaternary:#3a3347'
-                                                    style='width:25px;height:25px'>
-                                                </lord-icon>
-                                            </a>
-                                            <a href='./delete.php?id=$row[id_user]'>
+                                            <a href='./deletetest.php?id=$row[id_temoignage]'>
                                                 <script src='https://cdn.lordicon.com/lordicon.js'></script>
                                                 <lord-icon src='https://cdn.lordicon.com/hjbrplwk.json' trigger='loop'
                                                     delay='500'
@@ -305,7 +304,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     </tr>";
                                 endwhile;
                             endif;
-                            mysqli_close($conn);
+
                             ?>
                         </tbody>
                     </table>
@@ -351,13 +350,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <h3 class=" text-3xl subpixel-antialiased font-bold mb-[2%] dark:text-indigo-950">
                                 Informations</h3>
                             <form class="bg-popup flex flex-col text-gray-500" method="post">
-                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="name"
-                                    value="<?php echo $name; ?>" name="name" id="name">
-                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="email" name="email"
-                                    value="<?php echo $email; ?>" placeholder="E-mail Address" id="project">
-                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="password"
-                                    placeholder="PassWord" value="<?php echo $password; ?>" name="password"
-                                    id="contact">
+                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text"
+                                    placeholder="commentaire" value="<?php echo $commentaire; ?>" name="commentaire"
+                                    id="name">
+                                <select name="id_user" id="id_user">
+                                    <?= $opt ?>
+                                </select>
                                 <button
                                     class="text-white text-2xl font-bold border mx-auto w-52 h-14 rounded-2xl bg-yellow-500"
                                     type="submit" id="save">save</button>
@@ -377,12 +375,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <form id="updateForm" class="bg-popup flex flex-col text-gray-500">
                                 <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="name"
                                     id="update-name">
-                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="project"
-                                    id="update-project">
+                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text"
+                                    placeholder="Competence" id="update-project">
                                 <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="contact"
                                     id="update-contact">
-                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="Deadline"
-                                    id="update-deadline">
                                 <button
                                     class="text-white text-2xl font-bold border mx-auto w-52 h-14 rounded-2xl bg-yellow-500"
                                     type="button" id="update-save">Save</button>
@@ -403,6 +399,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         ";
                 }
+                ?>
+                <?php
+                mysqli_close($conn);
                 ?>
             </section>
         </main class="bg-slate-50">
