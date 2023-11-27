@@ -9,7 +9,7 @@ Welcome to People Per Task, your go-to destination for freelance talent! Our Git
 ## Features
 
 - Light/dark mode toggle
-- User Dashbard
+- User Dashbard (dynamique, BackEnd)
 - Admin Dashboard
 - Reactive design
 - Home Page
