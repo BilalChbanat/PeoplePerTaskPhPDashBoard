@@ -15,6 +15,8 @@
 </head>
 
 <body class="font-poppins dark:bg-gray-900 text-mainBlue dark:text-white">
+  <?php include('dbh.inc.php'); ?>
+
   <section class="flex flex-row">
     <side
       class="hidden md:block dark:bg-indigo-950 dark:border-none text-base rounded-3xl w-[25%]  py-[1%] px-[1%]  border">
@@ -236,33 +238,70 @@
             <li
               class="flex flex-row border border-mainBlue w-[50%] md:w-[20%] h-24 px-[1%] rounded-2xl items-center mx-auto md:ml-[7%]">
               <img class="h-[50%] mr-[10%]" src="../../images/fleche1.svg" alt="niveau">
-              <h2>Users <br><span class="text-AddCB">$632.000</span></h2>
+              <h2>Users
+                <br><span class="text-AddCB">
+                  <?php
+                  $dash_user_query = "SELECT * FROM user";
+                  $dash_user_query_run = mysqli_query($conn, $dash_user_query);
+                  if ($user_total = mysqli_num_rows($dash_user_query_run)) {
+                    echo '<h2>' . $user_total . '</h2>';
+                  } else {
+                    echo "<h4> No Data </h4>";
+                  }
+                  ?>
+                </span>
+              </h2>
             </li>
             <li
               class="flex flex-row border border-mainBlue w-[50%] md:w-[20%] h-24 px-[1%] rounded-2xl items-center mx-auto md:ml-[7%]">
               <img class="h-[50%] mr-[10%]" src="../../images/fleche2.svg" alt="niveau">
-              <h2>Projects <br><span class="text-AddCB">$632.000</span></h2>
-            </li>
-            <?php include('dbh.inc.php'); ?>
-            <li
-              class="flex flex-row border border-mainBlue w-[50%] md:w-[20%] h-24 px-[1%] rounded-2xl items-center mx-auto md:ml-[7%]">
-              <img class="h-[50%] mr-[10%]" src="../../images/fleche2.svg" alt="niveau">
-              <h2>Freelancers</h2>
-
-              <?php
-              $dash_cat_query = "SELECT * FROM category";
-              $dash_cat_query_run = mysqli_query($conn, $dash_cat_query);
-              if ($category_total = mysqli_num_rows($dash_cat_query_run)) {
-                echo '<br> <h2>' . $category_total . '</h2>';
-              } else {
-                echo "<br> <h4> No Data </h4>";
-              }
-              ?>
+              <h2>Projects
+                <br><span class="text-AddCB">
+                  <?php
+                  $dash_pro_query = "SELECT * FROM projets";
+                  $dash_pro_query_run = mysqli_query($conn, $dash_pro_query);
+                  if ($projets_total = mysqli_num_rows($dash_pro_query_run)) {
+                    echo '<h2>' . $projets_total . '</h2>';
+                  } else {
+                    echo "<h4> No Data </h4>";
+                  }
+                  ?>
+                </span>
+              </h2>
             </li>
             <li
               class="flex flex-row border border-mainBlue w-[50%] md:w-[20%] h-24 px-[1%] rounded-2xl items-center mx-auto md:ml-[7%]">
               <img class="h-[50%] mr-[10%]" src="../../images/fleche2.svg" alt="niveau">
-              <h2>Total categories<br><span class="text-AddCB">$632.000</span></h2>
+              <h2>Freelancers
+                <br><span class="text-AddCB">
+                  <?php
+                  $dash_free_query = "SELECT * FROM freelancers";
+                  $dash_free_query_run = mysqli_query($conn, $dash_free_query);
+                  if ($free_total = mysqli_num_rows($dash_free_query_run)) {
+                    echo '<h2>' . $free_total . '</h2>';
+                  } else {
+                    echo "<h4> No Data </h4>";
+                  }
+                  ?>
+                </span>
+              </h2>
+            </li>
+            <li
+              class="flex flex-row border border-mainBlue w-[50%] md:w-[20%] h-24 px-[1%] rounded-2xl items-center mx-auto md:ml-[7%]">
+              <img class="h-[50%] mr-[10%]" src="../../images/fleche2.svg" alt="niveau">
+              <h2>Categories
+                <br><span class="text-AddCB">
+                  <?php
+                  $dash_cat_query = "SELECT * FROM category";
+                  $dash_cat_query_run = mysqli_query($conn, $dash_free_query);
+                  if ($cat_total = mysqli_num_rows($dash_cat_query_run)) {
+                    echo '<h2>' . $cat_total . '</h2>';
+                  } else {
+                    echo "<h4> No Data </h4>";
+                  }
+                  ?>
+                </span>
+              </h2>
             </li>
           </ul>
         </div>
