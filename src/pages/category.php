@@ -1,47 +1,37 @@
 <?php
 include 'dbh.inc.php';
-$name = "";
-$email = "";
-$password = "";
-
+$name_cat = "";
 
 $errorMessage = "";
 $successMessage = "";
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $name_cat = $_POST['name_cat'];
 
     do {
-        if (empty($name) || empty($email) || empty($password)) {
+        if (empty($name_cat)) {
             $errorMessage = "The fields can't be blank";
             break;
         }
 
-        // add the user to the database
-
-        $sqlAdd = "INSERT INTO user (name_user, password, email) 
-        VALUES ('$name', '$password', '$email')";
+        $sqlAdd = "INSERT INTO category (name_cat) 
+                    VALUES ('$name_cat')";
         $resultadd = mysqli_query($conn, $sqlAdd);
 
         if (!$resultadd) {
-            $errorMessage = "Invalide query " . $conn->error;
+            $errorMessage = "Invalid query " . $conn->error;
             break;
         }
 
-
-
-        $name = "";
-        $email = "";
-        $password = "";
-
         $successMessage = "User added successfully";
 
-        header('location: dashclient.php');
+        header('location: category.php');
         exit;
     } while (false);
 }
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -49,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name_cat="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../dist/output.css">
     <link rel="stylesheet" href="../global.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -268,24 +258,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <table class="w-[95%] border-2 border-slate- dark:border-white text-center">
                         <tr class="border-b-2 text-xl bg-mainBlue dark:bg-purple-500 text-white">
                             <th class="py-2">Id</th>
-                            <th>Name</th>
-                            <th>email</th>
-                            <th>Password</th>
+                            <th>name category</th>
                             <th></th>
                         </tr>
                         <tbody id="tbody">
                             <?php
-                            $sql = "SELECT * FROM user";
+                            $sql = "SELECT * FROM category ";
                             $result = mysqli_query($conn, $sql);
                             if (mysqli_num_rows($result) > 0):
                                 while ($row = mysqli_fetch_assoc($result)):
                                     echo "<tr>
-                                        <td>$row[id_user]</td>
-                                        <td>$row[name_user]</td>
-                                        <td>$row[email]</td>
-                                        <td>$row[password]</td>
+                                        <td>$row[id_cat]</td>
+                                        <td>$row[name_cat]</td>
                                         <td>
-                                            <a href='./edit.php?id=$row[id_user]'>
+                                            <a href='./editcat.php?id=$row[id_cat]'>
                                                 <script src='https://cdn.lordicon.com/lordicon.js'></script>
                                                 <lord-icon src='https://cdn.lordicon.com/ylvuooxd.json' trigger='loop'
                                                     delay='50' state='hover-line'
@@ -293,7 +279,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                     style='width:25px;height:25px'>
                                                 </lord-icon>
                                             </a>
-                                            <a href='./delete.php?id=$row[id_user]'>
+                                            <a href='./deletecat.php?id=$row[id_cat]'>
                                                 <script src='https://cdn.lordicon.com/lordicon.js'></script>
                                                 <lord-icon src='https://cdn.lordicon.com/hjbrplwk.json' trigger='loop'
                                                     delay='500'
@@ -305,7 +291,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     </tr>";
                                 endwhile;
                             endif;
-                            mysqli_close($conn);
                             ?>
                         </tbody>
                     </table>
@@ -351,13 +336,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <h3 class=" text-3xl subpixel-antialiased font-bold mb-[2%] dark:text-indigo-950">
                                 Informations</h3>
                             <form class="bg-popup flex flex-col text-gray-500" method="post">
-                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="name"
-                                    value="<?php echo $name; ?>" name="name" id="name">
-                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="email" name="email"
-                                    value="<?php echo $email; ?>" placeholder="E-mail Address" id="project">
-                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="password"
-                                    placeholder="PassWord" value="<?php echo $password; ?>" name="password"
-                                    id="contact">
+                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="Category name"
+                                    value="<?php echo $name_cat; ?>" name="name_cat" id="name_cat">
                                 <button
                                     class="text-white text-2xl font-bold border mx-auto w-52 h-14 rounded-2xl bg-yellow-500"
                                     type="submit" id="save">save</button>
@@ -375,14 +355,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <h2 class="text-AddC text-3xl subpixel-antialiased font-bold mb-[2%] dark:text-indigo-950">
                                 Modifier le projet</h2>
                             <form id="updateForm" class="bg-popup flex flex-col text-gray-500">
-                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="name"
+                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="name cat"
                                     id="update-name">
-                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="project"
-                                    id="update-project">
+                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text"
+                                    placeholder="Competence" id="update-project">
                                 <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="contact"
                                     id="update-contact">
-                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="Deadline"
-                                    id="update-deadline">
                                 <button
                                     class="text-white text-2xl font-bold border mx-auto w-52 h-14 rounded-2xl bg-yellow-500"
                                     type="button" id="update-save">Save</button>
@@ -405,6 +383,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
                 ?>
             </section>
+            <?php
+            mysqli_close($conn);
+
+            ?>
         </main class="bg-slate-50">
         <script>
             const closeButton = document.querySelector('#closeButton');
