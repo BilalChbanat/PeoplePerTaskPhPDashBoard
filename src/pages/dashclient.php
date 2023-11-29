@@ -120,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <lord-icon src="https://cdn.lordicon.com/hqymfzvj.json" trigger="loop" delay="28"
                             colors="primary:#ffffff" style="width:28px;height:28px">
                         </lord-icon>
-                        <p>Add a New Project</p>
+                        <p>Add a New User</p>
                     </button>
                 </div>
                 <?php
