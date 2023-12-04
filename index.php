@@ -56,12 +56,9 @@
               </form>
             </li>
             <li class="hidden ht:flex justify-center items-center gap-3 flex-row">
-              <button type="button"
-                class="flex text-defaultText rounded-full bg-loginBtnBg py-2 px-8 justify-center items-center font-poppins text-base font-medium w-[full]">Log
-                In</button>
-              <a href="src/pages/dashclient.php"
-                class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[full]">Dash
-                Board</a>
+              <a type="button" href="./src/pages/login.php"
+                class="flex text-defaultText rounded-full bg-loginBtnBg py-2 px-8 justify-center items-center font-poppins text-base font-medium w-[full]" style="cursor:pointer;">Log
+                In</a>
             </li>
             <li>
               <div class="flex ht:hidden burgerMenu">

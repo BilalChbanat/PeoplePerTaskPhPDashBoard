@@ -1,5 +1,12 @@
 <?php
 include 'dbh.inc.php';
+session_start();
+if (!isset($_SESSION["email"])) {
+    echo '<script type="text/javascript">';
+    echo 'window.location.href = "./login.php";';
+    echo '</script>';
+    exit();
+}
 $id_cat = "";
 $name = "";
 
@@ -281,8 +288,8 @@ if (isset($_POST['save'])) {
                                 Informations</h3>
                             <form class="bg-popup flex flex-col text-gray-500" method="post">
                                 <input type="hidden" name="id_cat" value="<?php echo $id_cat; ?>">
-                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text" placeholder="category name"
-                                    value="<?php echo $name; ?>" name="name" id="name">
+                                <input class="mb-[1%] rounded py-[1%] pl-[2%] border" type="text"
+                                    placeholder="category name" value="<?php echo $name; ?>" name="name" id="name">
                                 <input
                                     class="text-white text-2xl font-bold border mx-auto w-52 h-14 rounded-2xl bg-yellow-500"
                                     type="submit" name="save" id="save" value="save">

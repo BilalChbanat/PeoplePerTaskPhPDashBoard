@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+require './dbh.inc.php';
+
+session_start();
+?>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,12 +62,12 @@
               </form>
             </li>
             <li class="hidden ht:flex justify-center items-center gap-3 flex-row">
-              <button type="button"
+              <a href="./login.php"
                 class="flex text-defaultText rounded-full bg-loginBtnBg py-2 px-8 justify-center items-center font-poppins text-base font-medium w-[full]">Log
-                In</button>
-              <button type="button"
-                class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[full]">Sign
-                Up</button>
+                In</a>
+              <a 
+                class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[full]" style="">Sign
+                Up</a>
             </li>
             <li>
               <div class="flex ht:hidden burgerMenu">
@@ -169,23 +175,17 @@
   <main>
     <div
       class="max-w-2xl h-fit mx-auto  my-12 bg-white p-8 pb-1 mt-16 rounded-xl shadow shadow-slate-200 drop-shadow-lg dark:bg-mainColorDark dark:shadow-slate-900 sm: w-full">
-      <h1 class="text-4xl text-center font-bold font-fredoka dark:text-white">Log in to <span
+      <h1 class="text-4xl text-center font-bold font-fredoka dark:text-white">Sign Up <span
           class="text-mainBlue dark:text-mainPurple">PeoplePerTask</span></h1>
-      <form action="" class="mt-10 mb-4">
+      <form action="./script.php" class="mt-10 mb-4" method="POST">
 
         <div class="flex flex-col space-y-5 items-center justify-center w-[100%]">
           <div class="flex flex-row items-center justify-between w-[100%] ">
-            <div class="w-[47%]">
+            <div class="w-[100%]">
               <label for="email"></label>
-              <input id="first-name" type="text" name="firt name"
+              <input id="first-name" type="text" name="first_name"
                 class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple"
                 placeholder="First Name">
-            </div>
-            <div class="w-[47%]">
-              <label for=""></label>
-              <input type="text" name="last name" id="last-name"
-                class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple"
-                placeholder="Last Name">
             </div>
           </div>
           <div class="flex flex-col items-center justify-between space-y-5 w-[100%]">
@@ -198,6 +198,11 @@
               <input id="password" name="password" type="password"
                 class="w-full py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple"
                 placeholder="Password">
+            </label>
+            <label for="repeat_password" class="w-[100%]">
+              <input id="password" name="repeat_password" type="password"
+                class="w-full py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple"
+                placeholder="Confirme Password">
             </label>
           </div>
           <div class="flex flex-row justify-between items-center w-[100%]">
@@ -216,14 +221,19 @@
               the <a href="#" class="text-mainBlue hover:underline dark:text-mainPurple">User Agreement</a> and <a
                 href="#" class="text-mainBlue hover:underline dark:text-mainPurple">Privacy Policy</a>.</span>
           </div>
-          <button
+          <button name="done"
             class="w-full py-3 font-medium text-white bg-mainBlue dark:bg-mainPurple dark:hover:bg-violet-500 hover:bg-indigo-600 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
             <span>Submit</span>
           </button>
-          <button class="w-full py-1 font-medium font-poppins text-gray-500 bg-none hover:text-gray-400">
-            <span>Back</span>
-          </button>
+          <a href="./login.php" class="w-full py-1 font-medium font-poppins text-gray-500 bg-none hover:text-gray-400" style="display:flex;text-align:center; justify-content: center; align-items:center;">
+            Back
+          </a>
         </div>
+        <!-- ================================================================================================================ -->
+
+
+
+        <!-- ================================================================================================================ -->
       </form>
     </div>
   </main>
@@ -232,6 +242,6 @@
   </footer>
 
 
-  < </body>
+</body>
 
 </html>

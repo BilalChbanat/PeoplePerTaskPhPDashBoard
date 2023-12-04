@@ -57,12 +57,11 @@
               </form>
             </li>
             <li class="hidden ht:flex justify-center items-center gap-3 flex-row">
-              <button type="button"
-                class="flex text-defaultText rounded-full bg-loginBtnBg py-2 px-8 justify-center items-center font-poppins text-base font-medium w-[full]">Log
-                In</button>
-              <button
-                class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[full]">Dash
-                Board</button>
+              <a type="button" href="./login.php"
+                class="flex text-defaultText rounded-full bg-loginBtnBg py-2 px-8 justify-center items-center font-poppins text-base font-medium w-[full]"
+                style="cursor:pointer;">Log
+                In</a>
+
             </li>
             <li>
               <div class="flex ht:hidden burgerMenu">
@@ -170,7 +169,7 @@
   <main>
     <div
       class="max-w-2xl h-fit mx-auto  my-12 bg-white p-8 pb-1 mt-16 rounded-xl shadow shadow-slate-200 drop-shadow-lg dark:bg-mainColorDark dark:shadow-slate-900 sm: w-full">
-      <h1 class="text-4xl text-center font-bold font-fredoka dark:text-white">Log in to <span
+      <h1 class="text-4xl text-center font-bold font-fredoka dark:text-white">Contact <span
           class="text-mainBlue dark:text-mainPurple">PeoplePerTask</span></h1>
       <form action="./validation.php" class="mt-10 mb-6" method="POST">
 
@@ -198,19 +197,19 @@
             </div>
             <div class="w-[47%]">
               <label for=""></label>
-              <input type="text" name="email" id="last-name"
+              <input type="email" name="email" id="last-name"
                 class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple"
                 placeholder="xxxx@xxx.xx">
             </div>
           </div>
           <div class="flex flex-col items-center justify-between space-y-5 w-[100%]">
             <label for="email" class="w-[100%]">
-              <input id="email" name="subject" type="email"
+              <input id="email" name="subject" type="text"
                 class="w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple"
                 placeholder="Subject">
             </label>
             <label for="password" class="w-[100%]">
-              <input id="password" name="message" type="password"
+              <input id="password" name="message" type="Message"
                 class="w-full py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple"
                 placeholder="Message">
             </label>

@@ -1,9 +1,19 @@
 <?php
 include 'dbh.inc.php';
+session_start();
+if (!isset($_SESSION["email"])) {
+    echo '<script type="text/javascript">';
+    echo 'window.location.href = "./login.php";';
+    echo '</script>';
+    exit();
+}
 $title_projet = "";
 $descreption = "";
 $id_user = "";
 $id_cat = "";
+
+// $title = mysqli_real_escape_string($conn, $_POST['title']);
+// $title = htmlspecialchars($title);
 
 $errorMessage = "";
 $successMessage = "";
@@ -91,7 +101,7 @@ endif;
             <?php include('../../nav.php') ?>
         </side>
         <main style="width: 100%;" class="bg-white dark:bg-gray-900">
-                <?php include('../../header.php')?>
+            <?php include('../../header.php') ?>
             <section>
                 <div
                     class="table-auto text-black dark:text-white dark:bg-indigo-950 p-4 w-[90%] m-[2%] pl-[5%] py-[2%] rounded-2xl border dark:border-none">

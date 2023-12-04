@@ -1,5 +1,14 @@
 <?php
 include 'dbh.inc.php';
+session_start();
+if (!isset($_SESSION["email"])) {
+    echo '<script type="text/javascript">';
+    echo 'window.location.href = "./login.php";';
+    echo '</script>';
+    exit();
+
+}
+
 $name = "";
 $competence = "";
 $id_user = "";
@@ -87,7 +96,7 @@ endif;
         </side>
         <main style="width: 100%;" class="bg-white dark:bg-gray-900">
 
-                <?php include('../../header.php') ?>
+            <?php include('../../header.php') ?>
 
             <section>
                 <div

@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+include('./script.php');
+session_start();
+
+?>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +35,7 @@
         </li>
         <li>
           <ul class="justify-center items-center gap-4 hf:flex hidden">
-            <li><a href="./index.php"
+            <li><a href="../../index.php"
                 class="dark:text-mainPurple text-mainBlue font-poppins font-normal text-base border-b-mainBlue dark:border-b-mainPurple border-b-[3px] py-[0.6rem]">Home</a>
             </li>
             <li><a href="./become.php"
@@ -58,9 +64,10 @@
               <button type="button"
                 class="flex text-defaultText rounded-full bg-loginBtnBg py-2 px-8 justify-center items-center font-poppins text-base font-medium w-[full]">Log
                 In</button>
-              <button type="button"
-                class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[full]">Sign
-                Up</button>
+              <a href="./signup2.php"
+                class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[full]"
+                style="cursor:pointer;">Sign
+                Up</a>
             </li>
             <li>
               <div class="flex ht:hidden burgerMenu">
@@ -170,15 +177,16 @@
       class="max-w-2xl  mx-auto  my-12 bg-white p-8 pb-1 mt-16 rounded-xl shadow shadow-slate-200 drop-shadow-lg dark:bg-mainColorDark dark:shadow-slate-900 sm: w-full">
       <h1 class="text-4xl text-center font-bold font-fredoka dark:text-white">Log in to <span
           class="text-mainBlue">PeoplePerTask</span></h1>
-      <form action="" class="my-10">
+      <form method="POST" class="my-10" action="./script.php">
         <div class="flex flex-col space-y-5">
           <label for="email">
-            <input id="email" name="email" type="email"
+            <input id="email" name="email" type="email" value="<?= isset($_COOKIE['email']) ? $_COOKIE['email'] : '' ?>"
               class="w-full py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue"
               placeholder="Enter email address">
           </label>
           <label for="password">
             <input id="password" name="password" type="password"
+              value="<?= isset($_COOKIE['password']) ? $_COOKIE['password'] : '' ?>"
               class="w-full py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue"
               placeholder="Enter your password">
           </label>
@@ -190,10 +198,11 @@
               </label>
             </div>
             <div>
-              <a href="#" class="font-normal text-sm text-zinc-500 dark:text-gray-300">Forgot Password?</a>
+              <span> You don't have an Account?</span>
+              <a href="./signup2.php" class="font-normal text-sm text-zinc-500 dark:text-gray-300">Sign up</a>
             </div>
           </div>
-          <button
+          <button type="submit" name="login"
             class="w-full py-3 font-medium text-white bg-mainBlue hover:bg-indigo-600 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
             <span>Login</span>
           </button>
@@ -236,6 +245,6 @@
   </footer>
 
 
-  < </body>
+</body>
 
 </html>

@@ -1,5 +1,12 @@
 <?php
 include 'dbh.inc.php';
+session_start();
+if (!isset($_SESSION["email"])) {
+    echo '<script type="text/javascript">';
+    echo 'window.location.href = "./login.php";';
+    echo '</script>';
+    exit();
+}
 $title_projet = "";
 $descreption = "";
 $id_user = "";
