@@ -5,6 +5,15 @@
 require './dbh.inc.php';
 
 session_start();
+
+$sql = "SELECT * FROM ville";
+$result = mysqli_query($conn, $sql);
+
+$villes = array();
+while ($row = mysqli_fetch_assoc($result)) {
+  $villes[$row['id']] = $row;
+}
+
 ?>
 
 <head>
@@ -65,8 +74,8 @@ session_start();
               <a href="./login.php"
                 class="flex text-defaultText rounded-full bg-loginBtnBg py-2 px-8 justify-center items-center font-poppins text-base font-medium w-[full]">Log
                 In</a>
-              <a 
-                class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[full]" style="">Sign
+              <a class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[full]"
+                style="">Sign
                 Up</a>
             </li>
             <li>
@@ -197,43 +206,69 @@ session_start();
             <label for="password" class="w-[100%]">
               <input id="password" name="password" type="password"
                 class="w-full py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple"
-                placeholder="Password">
+                placeholder="••••••••">
             </label>
             <label for="repeat_password" class="w-[100%]">
               <input id="password" name="repeat_password" type="password"
                 class="w-full py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple"
-                placeholder="Confirme Password">
+                placeholder="••••••••">
             </label>
           </div>
-          <div class="flex flex-row justify-between items-center w-[100%]">
-            <div>
-              <label for="remember" class=" font-normal text-sm dark:text-white">
-                <input type="checkbox" id="send" class="w-4 h-4 border-none focus:bg-mainBlue">
-                <span class="ml-1">Send me helpful emails to find rewarding work and job leads.</span>
+          <div class="py-2">
+            <div class="flex items-center mb-4">
+              <input id="country-option-1" type="radio" name="role" value="user"
+                class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600"
+                checked>
+              <label for="country-option-1" class="block ms-2  text-sm font-medium text-gray-900 dark:text-gray-300">
+                I'm a client, hiring for a project
               </label>
             </div>
+
+            <div class="flex items-center mb-4">
+              <input id="country-option-2" type="radio" name="role" value="freelancer"
+                class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+              <label for="country-option-2" class="block ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                I'm a freelancer, looking for work
+              </label>
+            </div>
+            <select id="countries" name="ville_id"
+              class="text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <option>--select your city--</option>
+              <?php foreach ($villes as $id => $ville) {
+                echo "<option value='" . $id . "'>" . $ville['ville'] . "</option>";
+              } ?>
+            </select>
+            <div class="flex flex-row justify-between items-center w-[100%]">
+              <div>
+                <label for="remember" class=" font-normal text-sm dark:text-white">
+                  <input type="checkbox" id="send" class="w-4 h-4 border-none focus:bg-mainBlue">
+                  <span class="ml-1">Send me helpful emails to find rewarding work and job leads.</span>
+                </label>
+              </div>
+            </div>
+            <div class="flex flex-row items-start">
+              <label for="remember"></label>
+              <input type="checkbox" id="agree" class="w-5 h-5 border-none focus:bg-mainBlue">
+              <span class="block font-normal text-sm ml-2 dark:text-white">Yes, I understand and agree to the <a
+                  href="#" class="text-mainBlue hover:underline dark:text-mainPurple">PoeplePerTask Terms of
+                  service</a>, including
+                the <a href="#" class="text-mainBlue hover:underline dark:text-mainPurple">User Agreement</a> and <a
+                  href="#" class="text-mainBlue hover:underline dark:text-mainPurple">Privacy Policy</a>.</span>
+            </div>
+            <button name="done"
+              class="w-full py-3 font-medium text-white bg-mainBlue dark:bg-mainPurple dark:hover:bg-violet-500 hover:bg-indigo-600 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
+              <span>Submit</span>
+            </button>
+            <a href="./login.php" class="w-full py-1 font-medium font-poppins text-gray-500 bg-none hover:text-gray-400"
+              style="display:flex;text-align:center; justify-content: center; align-items:center;">
+              Back
+            </a>
           </div>
-          <div class="flex flex-row items-start">
-            <label for="remember"></label>
-            <input type="checkbox" id="agree" class="w-5 h-5 border-none focus:bg-mainBlue">
-            <span class="block font-normal text-sm ml-2 dark:text-white">Yes, I understand and agree to the <a href="#"
-                class="text-mainBlue hover:underline dark:text-mainPurple">PoeplePerTask Terms of service</a>, including
-              the <a href="#" class="text-mainBlue hover:underline dark:text-mainPurple">User Agreement</a> and <a
-                href="#" class="text-mainBlue hover:underline dark:text-mainPurple">Privacy Policy</a>.</span>
-          </div>
-          <button name="done"
-            class="w-full py-3 font-medium text-white bg-mainBlue dark:bg-mainPurple dark:hover:bg-violet-500 hover:bg-indigo-600 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
-            <span>Submit</span>
-          </button>
-          <a href="./login.php" class="w-full py-1 font-medium font-poppins text-gray-500 bg-none hover:text-gray-400" style="display:flex;text-align:center; justify-content: center; align-items:center;">
-            Back
-          </a>
-        </div>
-        <!-- ================================================================================================================ -->
+          <!-- ================================================================================================================ -->
 
 
 
-        <!-- ================================================================================================================ -->
+          <!-- ================================================================================================================ -->
       </form>
     </div>
   </main>

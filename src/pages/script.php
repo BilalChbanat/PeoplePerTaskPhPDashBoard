@@ -11,18 +11,20 @@ function signup()
 {
     global $conn;
 
-
+    $city_id = $_POST['ville_id'];
     $firstname = $_POST["first_name"];
     $email = $_POST["email"];
     $password = $_POST["password"];
     $confirmPassword = $_POST["repeat_password"];
+
+    $role = $_POST['role'];
     $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
     if (empty($firstname) || empty($email) || empty($password) || empty($confirmPassword)) {
         echo "<span style='color:red;'> Error Invalide Fields</span>";
     } else {
         if ($_POST['password'] == $confirmPassword) {
 
-            $sql = "INSERT INTO user (name_user, email,password) VALUES (?,?,?)";
+            $sql = "INSERT INTO user (name_user, email, id_ville, password, role) VALUES (?,?,?,?,?)";
 
             // préparez une requête stmt (mysqli_prepare)
             $stmt = mysqli_prepare($conn, $sql);
@@ -30,7 +32,7 @@ function signup()
             // liez le paramètre (mysqli_stmt_bind_param)
 
 
-            mysqli_stmt_bind_param($stmt, 'sss', $firstname, $email, $password);
+            mysqli_stmt_bind_param($stmt, 'ssiss', $firstname, $email, $city_id, $password, $role);
 
             // exécutez la requête préparée (mysqli_stmt_execute )
 
@@ -91,14 +93,30 @@ function login()
             $_SESSION['email'] = $row['email'];
             // $_SESSION['name'] = $row['name_user'];
 
-            if (isset($_POST['email'])) {
-                setcookie('email', $email, time() + 2 * 60, '/');
-                setcookie('password', $password, time() + 2 * 60, '/');
-
-                echo '<script type="text/javascript">';
-                echo 'window.location.href = "./dashstats.php";';
-                echo '</script>';
-                exit();
+            if ($row['role'] == 'user') {
+                // Set user session details
+                // $_SESSION["username"] = $row['username'];
+                // $_SESSION["image"] = $row['image'];
+                $_SESSION["email"] = $email;
+                var_dump($row['role']);
+                header("location: ../../index.php");
+            } elseif ($row['role'] == 'freelancer') {
+                // $_SESSION["username"] = $row['username'];
+                // $_SESSION["image"] = $row['image'];
+                $_SESSION["email"] = $email;
+                $_SESSION["role"] = $row['role'];
+                header("location: ../../index.php");
+                // echo '<script type="text/javascript">';
+                // echo 'window.location.href = ./index.php';
+                // echo '</script>';
+                // exit();
+            } elseif ($row['role'] == 'admin') {
+                // Set admin session details
+                // $_SESSION["email"] = $email;
+                // $_SESSION["username"] = $row['username'];
+                // $_SESSION["image"] = $row['image'];
+                $_SESSION["role"] = $row["role"];
+                header("location: dashstats.php");
             }
         } else {
             echo 'password invalid';

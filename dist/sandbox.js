@@ -1,6 +1,6 @@
 "use strict";
 /**
- * @author Yassir Elkhaili
+ * @author Bilal Chbanat
  * @license MIT
  * @todo sticky header on scroll down
  * @todo bottom border moves to nav item on hover
