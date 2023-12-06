@@ -192,7 +192,7 @@ while ($row = mysqli_fetch_assoc($result)) {
               <label for="email"></label>
               <input id="first-name" type="text" name="first_name"
                 class="flex w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple"
-                placeholder="First Name">
+                placeholder="Full Name">
             </div>
           </div>
           <div class="flex flex-col items-center justify-between space-y-5 w-[100%]">
@@ -200,6 +200,11 @@ while ($row = mysqli_fetch_assoc($result)) {
               <input id="email" name="email" type="email"
                 class="w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple"
                 placeholder="Email">
+            </label>
+            <label for="skills" class="w-[100%]">
+              <input id="email" name="skills" type="text"
+                class="w-[100%] py-3 border-gray-300 border-2 rounded-lg px-3 focus:outline-none focus:border-mainBlue dark:focus:border-mainPurple"
+                placeholder="Type Your Skills">
             </label>
             <label for="password" class="w-[100%]">
               <input id="password" name="password" type="password"
