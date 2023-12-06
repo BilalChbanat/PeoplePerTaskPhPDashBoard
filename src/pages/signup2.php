@@ -4,8 +4,6 @@
 <?php
 require './dbh.inc.php';
 
-session_start();
-
 $sql = "SELECT * FROM ville";
 $result = mysqli_query($conn, $sql);
 

@@ -3,8 +3,6 @@
 
 <?php
 include('./script.php');
-session_start();
-
 ?>
 
 <head>

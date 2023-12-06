@@ -1,14 +1,13 @@
 <?php
 require_once('./dbh.inc.php');
-if (isset($_POST['done'])) {
+if(isset($_POST['done'])) {
     signup();
-} else if (isset($_POST["login"])) {
+} else if(isset($_POST["login"])) {
     login();
 }
 
 // setcokie(name, value, expire, path, domain, secure, httponty)
-function signup()
-{
+function signup() {
     global $conn;
 
     $city_id = $_POST['ville_id'];
@@ -19,10 +18,10 @@ function signup()
 
     $role = $_POST['role'];
     $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
-    if (empty($firstname) || empty($email) || empty($password) || empty($confirmPassword)) {
+    if(empty($firstname) || empty($email) || empty($password) || empty($confirmPassword)) {
         echo "<span style='color:red;'> Error Invalide Fields</span>";
     } else {
-        if ($_POST['password'] == $confirmPassword) {
+        if($_POST['password'] == $confirmPassword) {
 
             $sql = "INSERT INTO user (name_user, email, id_ville, password, role) VALUES (?,?,?,?,?)";
 
@@ -38,7 +37,7 @@ function signup()
 
             $result = mysqli_stmt_execute($stmt);
 
-            if ($result) {
+            if($result) {
                 echo '<script type="text/javascript">';
                 echo 'window.location.href = "./login.php";';
                 echo '</script>';
@@ -56,8 +55,7 @@ function signup()
 }
 
 
-function login()
-{
+function login() {
     session_start();
 
     global $conn;
@@ -88,29 +86,29 @@ function login()
 
     $result = mysqli_stmt_get_result($stmt);
 
-    if ($row = mysqli_fetch_assoc($result)) {
-        if (password_verify($password, $row['password'])) {
+    if($row = mysqli_fetch_assoc($result)) {
+        if(password_verify($password, $row['password'])) {
             $_SESSION['email'] = $row['email'];
             // $_SESSION['name'] = $row['name_user'];
 
-            if ($row['role'] == 'user') {
+            if($row['role'] == 'user') {
                 // Set user session details
                 // $_SESSION["username"] = $row['username'];
                 // $_SESSION["image"] = $row['image'];
                 $_SESSION["email"] = $email;
                 var_dump($row['role']);
-                header("location: ../../index.php");
-            } elseif ($row['role'] == 'freelancer') {
+                header("location: ./index.php");
+            } elseif($row['role'] == 'freelancer') {
                 // $_SESSION["username"] = $row['username'];
                 // $_SESSION["image"] = $row['image'];
                 $_SESSION["email"] = $email;
                 $_SESSION["role"] = $row['role'];
-                header("location: ../../index.php");
+                header("location: ./index.php");
                 // echo '<script type="text/javascript">';
                 // echo 'window.location.href = ./index.php';
                 // echo '</script>';
                 // exit();
-            } elseif ($row['role'] == 'admin') {
+            } elseif($row['role'] == 'admin') {
                 // Set admin session details
                 // $_SESSION["email"] = $email;
                 // $_SESSION["username"] = $row['username'];
