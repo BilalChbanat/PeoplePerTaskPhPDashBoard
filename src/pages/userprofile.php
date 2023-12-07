@@ -16,6 +16,7 @@
 
 <body class="">
     <?php
+    include 'dbh.inc.php';
     include("./headerIndex.php");
     if (!isset($_SESSION["email"])) {
         header("Location: login.php");
@@ -37,6 +38,28 @@
             die("query failed " . mysqli_error());
         }
     }
+    ?>
+    <?php
+    $sql = "SELECT id_user, name_user FROM user";
+    $re = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($re) > 0):
+        ob_start();
+        while ($row = mysqli_fetch_assoc($re)):
+            echo "<option value=" . $row['id_user'] . ">" . $row['id_user'] . "-" . $row['name_user'] . "</option>";
+        endwhile;
+        $opt = ob_get_clean();
+    endif;
+    ?>
+    <?php
+    $sql = "SELECT id_cat, name_cat FROM category";
+    $re = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($re) > 0):
+        ob_start();
+        while ($row = mysqli_fetch_assoc($re)):
+            echo "<option value=" . $row['id_cat'] . ">" . $row['id_cat'] . "-" . $row['name_cat'] . "</option>";
+        endwhile;
+        $optcat = ob_get_clean();
+    endif;
     ?>
     <div class="flex flex-col items-center justify-center" style="justify-content:center;height:40rem; ">
         <div class="bg-white max-w-2xl shadow overflow-hidden sm:rounded-lg"
@@ -152,22 +175,19 @@
                                                 placeholder="Type Project Title" required="">
                                         </div>
                                         <div class="col-span-2 sm:col-span-1">
-                                            <label for="price"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
-                                            <input type="number" name="price" id="price"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                placeholder="$2999" required="">
+                                            <label for="id_user"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">User</label>
+                                            <select id="id_user" name="id_user"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                <?= $opt ?>
+                                            </select>
                                         </div>
                                         <div class="col-span-2 sm:col-span-1">
                                             <label for="category"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                                            <select id="category"
+                                            <select id="category" name="category"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                <option selected="">Select category</option>
-                                                <option value="TV">TV/Monitors</option>
-                                                <option value="PC">PC</option>
-                                                <option value="GA">Gaming/Console</option>
-                                                <option value="PH">Phones</option>
+                                                <?= $optcat ?>
                                             </select>
                                         </div>
                                         <div class="col-span-2">
@@ -195,12 +215,6 @@
                     </div>
 
                 </dl>
-                <!-- ---------------------------------------- -->
-
-
-
-
-                <!-- ---------------------------------------- -->
             </div>
         </div>
     </div>
