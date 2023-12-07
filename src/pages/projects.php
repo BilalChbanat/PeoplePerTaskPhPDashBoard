@@ -12,7 +12,7 @@ $descreption = "";
 $id_user = "";
 $id_cat = "";
 
-// $title = mysqli_real_escape_string($conn, $_POST['title']);
+// $title = mysqli_real_escape_string($conn, $_POST['title_projet']);
 // $title = htmlspecialchars($title);
 
 $errorMessage = "";

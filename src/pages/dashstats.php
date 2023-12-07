@@ -73,13 +73,13 @@ if (!isset($_SESSION["email"])) {
                 </span>
               </h2>
             </li>
-            <li
+            <!-- <li
               class="flex flex-row border border-mainBlue w-[50%] md:w-[20%] h-24 px-[1%] rounded-2xl items-center mx-auto md:ml-[7%]">
               <img class="h-[50%] mr-[10%]" src="../../images/fleche2.svg" alt="niveau">
               <h2>Freelancers
                 <br><span class="text-AddCB">
                   <?php
-                  $dash_free_query = "SELECT * FROM freelancers";
+                  $dash_free_query = "SELECT * FROM category";
                   $dash_free_query_run = mysqli_query($conn, $dash_free_query);
                   if ($free_total = mysqli_num_rows($dash_free_query_run)) {
                     echo '<h2>' . $free_total . '</h2>';
@@ -89,7 +89,7 @@ if (!isset($_SESSION["email"])) {
                   ?>
                 </span>
               </h2>
-            </li>
+            </li> -->
             <li
               class="flex flex-row border border-mainBlue w-[50%] md:w-[20%] h-24 px-[1%] rounded-2xl items-center mx-auto md:ml-[7%]">
               <img class="h-[50%] mr-[10%]" src="../../images/fleche2.svg" alt="niveau">

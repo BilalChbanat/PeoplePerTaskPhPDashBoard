@@ -95,7 +95,7 @@
                                                     </a>
                                                 </li>
                                                 <li class="font-medium">
-                                                    <a href="./updateprofile.php"
+                                                    <a href="./userprofile.php"
                                                         class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-700">
                                                         <div class="mr-3">
                                                             <svg class="w-6 h-6" fill="none" stroke="currentColor"
