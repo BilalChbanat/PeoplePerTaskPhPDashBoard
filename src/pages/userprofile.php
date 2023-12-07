@@ -22,24 +22,24 @@
         header("Location: login.php");
     }
 
-    if (isset($_POST['green'])) {
-        $image = $_POST['image'];
-        $titre = $_POST['titre'];
-        $id_cat = $_POST['Cat_name'];
-        $id = $_POST['f_id_user'];
-        $description = $_POST['description'];
-        if (empty($titre)) {
-            header('location:projects.php? message = fill all data!');
+    if (isset($_POST['save'])) {
+        $title_projet = $_POST['title_projet'];
+        $descreption = $_POST['description'];
+        $id_user = $_POST['id_user'];
+        $id_cat = $_POST['category'];
+        if (empty($title_projet)) {
+            echo "barca";
         } else {
-            $query = "INSERT INTO  project (image,titre, id_cat, id,description) VALUES ('$image','$titre', '$id_cat','$id','$description')";
-            $result = mysqli_query($conn, $query);
+            $sqlAddcat = "INSERT INTO projets (title_projet, descreption, id_cat , id_user) 
+                    VALUES ('$title_projet', '$descreption', $id_cat, $id_user)";
+            $resultaddcat = mysqli_query($conn, $sqlAddcat);
         }
-        if (!$result) {
+        if (!$resultaddcat) {
             die("query failed " . mysqli_error());
         }
+
     }
-    ?>
-    <?php
+
     $sql = "SELECT id_user, name_user FROM user";
     $re = mysqli_query($conn, $sql);
     if (mysqli_num_rows($re) > 0):
@@ -49,9 +49,8 @@
         endwhile;
         $opt = ob_get_clean();
     endif;
-    ?>
-    <?php
-    $sql = "SELECT id_cat, name_cat FROM category";
+
+    $sql = "SELECT * FROM category";
     $re = mysqli_query($conn, $sql);
     if (mysqli_num_rows($re) > 0):
         ob_start();
@@ -165,7 +164,7 @@
                                     </button>
                                 </div>
                                 <!-- Modal body -->
-                                <form class="p-4 md:p-5">
+                                <form class="p-4 md:p-5" method="POST">
                                     <div class="grid gap-4 mb-4 grid-cols-2">
                                         <div class="col-span-2">
                                             <label for="name"
@@ -192,14 +191,14 @@
                                         </div>
                                         <div class="col-span-2">
                                             <label for="description"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project
                                                 Description</label>
-                                            <textarea id="description" rows="4"
+                                            <textarea id="description" rows="4" name="description"
                                                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 placeholder="Write product description here"></textarea>
                                         </div>
                                     </div>
-                                    <button type="submit"
+                                    <button type="submit" name="save"
                                         class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                         <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                             xmlns="http://www.w3.org/2000/svg">

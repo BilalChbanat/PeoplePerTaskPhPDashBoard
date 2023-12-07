@@ -7,6 +7,7 @@ if (!isset($_SESSION["email"])) {
     echo '</script>';
     exit();
 }
+
 $title_projet = "";
 $descreption = "";
 $id_user = "";
