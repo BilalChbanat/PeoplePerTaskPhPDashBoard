@@ -7,118 +7,57 @@
     <link rel="stylesheet" href="../../dist/output.css" />
     <script src="../../dist/sandbox.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css/dist/charts.min.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.css" rel="stylesheet" />
     <title>Find A Work</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
     <!--  -->
 </head>
 
 <body class="bg-gray-100 dark:bg-gray-900">
-    <header>
-        <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
-            <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-                <a href="../src/index.html" class="flex items-center">
-                    <img src="../images/logo.webp" class="mr-3 h-6 sm:h-9" alt="peoplepertask Logo" />
-                    <span class="self-center hidden sm:block font-semibold whitespace-nowrap dark:text-white">People Per
-                        Tasks</span>
-                </a>
-                <div class="flex items-center lg:order-2">
-                    <a href="../src/signin.html"
-                        class="text-gray-900 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Log
-                        in</a>
-                    <a href="../src/signup.html"
-                        class="text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:ring-primary-300 font-medium rounded-3xl text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-orange-600 dark:hover:bg-orange-700 focus:outline-none dark:focus:ring-primary-800">Sign
-                        Up</a>
-                    <button id="theme-toggle" type="button"
-                        class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
-                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-                        </svg>
-                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                                fill-rule="evenodd" clip-rule="evenodd"></path>
-                        </svg>
-                    </button>
-                    <button data-collapse-toggle="mobile-menu-2" type="button"
-                        class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                        aria-controls="mobile-menu-2" aria-expanded="false">
-                        <span class="sr-only">Open main menu</span>
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        <svg class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </button>
+    <?php include "headerIndex.php";
+    include "./dbh.inc.php";
+    $sql = 'SELECT * FROM projets ORDER BY id_projet DESC';
+    $result = mysqli_query($conn, $sql);
+
+    $projects = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    mysqli_close($conn);
+
+    ?>
+    <!-- search -->
+    <div style="display:flex;justify-content:center;">
+        <form class="flex items-center" style="width:23cm;">
+            <label for="voice-search" class="sr-only">Search</label>
+            <div class="relative w-full">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11.15 5.6h.01m3.337 1.913h.01m-6.979 0h.01M5.541 11h.01M15 15h2.706a1.957 1.957 0 0 0 1.883-1.325A9 9 0 1 0 2.043 11.89 9.1 9.1 0 0 0 7.2 19.1a8.62 8.62 0 0 0 3.769.9A2.013 2.013 0 0 0 13 18v-.857A2.034 2.034 0 0 1 15 15Z" />
+                    </svg>
                 </div>
-                <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
-                    <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
-                        <li>
-                            <a href="../src/index.html"
-                                class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-                                aria-current="page">Home
-                            </a>
-                        </li>
-                        <li>
-                            <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
-                                class="inline-flex py-2 pr-4 pl-3 cursor-pointer text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-                                type="button">
-                                Company
-                                <svg class="w-2.5 h-2.5 ml-2.5 mt-2.5" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m1 1 4 4 4-4" />
-                                </svg>
-                            </button>
-                            <!-- Dropdown menu -->
-                            <div id="dropdown"
-                                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                    aria-labelledby="dropdownDefaultButton">
-                                    <li>
-                                        <a href="../src/about.html#tab-profile"
-                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Who
-                                            we are</a>
-                                    </li>
-                                    <li>
-                                        <a href="../src/about.html#tab-settings"
-                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Our
-                                            Value System</a>
-                                    </li>
-                                    <li>
-                                        <a href="../src/about.html#tab-options"
-                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Meet
-                                            The Team</a>
-                                    </li>
-                                </ul>
-                                <div class="py-2">
-                                    <a href="../src/pricing.html"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Pricing</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="../src/marketplace.html"
-                                class="block py-2 pr-4 pl-3 text-primary-500 rounded lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white">Market
-                                Place</a>
-                        </li>
-                        <li>
-                            <a href="../src/contact.html"
-                                class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
-                        </li>
-                    </ul>
-                </div>
+                <input type="text" id="voice-search" onchange="get_data(this.value)"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Search Mockups, Logos, Design Templates..." required>
+                <button type="button" class="absolute inset-y-0 end-0 flex items-center pe-3">
+                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 7v3a5.006 5.006 0 0 1-5 5H6a5.006 5.006 0 0 1-5-5V7m7 9v3m-3 0h6M7 1h2a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V4a3 3 0 0 1 3-3Z" />
+                    </svg>
+                </button>
             </div>
-        </nav>
-    </header>
+            <button type="submit"
+                class="inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                </svg>Search
+            </button>
+        </form>
+    </div>
+    <!-- searchh -->
     <div class="bg-gray-100 dark:bg-gray-900">
         <div>
             <div class="relative z-40 lg:hidden" role="dialog" aria-modal="true">
@@ -680,656 +619,81 @@
                             <section class="text-gray-600 body-font">
                                 <div class="container px-5 py-24 mx-auto">
                                     <div class="flex flex-wrap -m-4">
-                                        <div
-                                            class="lg:w-1/4 md:w-1/2 p-4 w-full ring-1 rounded-lg ring-gray-300 dark:ring-gray-700 bg-white dark:bg-gray-900">
-                                            <h3
-                                                class="text-gray-900 font-bold text-lg p-2 lg:p-4 lg:text-xl tracking-widest title-font mb-1 dark:text-white">
-                                                <a href="../src/error404.html">Webflow Interaction Designer</a>
-                                            </h3>
-                                            <p class="text-sm text-gray-400 pl-2 lg:pl-4">
-                                                Fixed-price - Posted 3 days ago
-                                            </p>
-                                            <ul class="pl-2 py-4 lg:pt-4 lg:py-6 flex gap-20">
-                                                <li>
-                                                    <p class="text-black font-semibold dark:text-white">
-                                                        $1,000
-                                                    </p>
-                                                    <p class="text-sm pt-1 dark:text-gray-400">
-                                                        Fixed-price
-                                                    </p>
-                                                </li>
-                                                <li>
-                                                    <p class="text-black font-semibold dark:text-white">
-                                                        Intermediate
-                                                    </p>
-                                                    <p class="text-sm pt-1 dark:text-gray-400">
-                                                        Experience level
-                                                    </p>
-                                                </li>
-                                            </ul>
-                                            <p class="text-gray-400 truncate pl-2 lg:pl-4">
-                                                I need a webflow professional that can also be an
-                                                interaction designer that can work by my side (as a
-                                                designer) to fix page transitions/ buttons
-                                                interactions / loading animation effects into my
-                                                website under development with another team (
-                                                https://design-ledger.webflow.io/). We also need to
-                                                build a Design System / Page for the website. At the
-                                                end, we need to also turn this website into a template
-                                                for Webflow marketplace. Please share your portfolio
-                                                so I can see it. Thanks in advance.
-                                            </p>
-                                            <div>
-                                                <ul class="pl-2 py-4 lg:pt-4 lg:py-10 flex gap-5">
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        website
+
+                                        <?php foreach ($projects as $project): ?>
+                                            <div
+                                                class="lg:w-1/4 md:w-1/2 p-4 w-full ring-1 rounded-lg ring-gray-300 dark:ring-gray-700 bg-white dark:bg-gray-900">
+                                                <h3
+                                                    class="text-gray-900 font-bold text-lg p-2 lg:p-4 lg:text-xl tracking-widest title-font mb-1 dark:text-white">
+                                                    <a href="../src/error404.html">
+                                                        <?= $project['title_projet'] ?>
+                                                    </a>
+                                                </h3>
+                                                <p class="text-sm text-gray-400 pl-2 lg:pl-4">
+                                                    Fixed-price - Posted 3 days ago
+                                                </p>
+                                                <ul class="pl-2 py-4 lg:pt-4 lg:py-6 flex gap-20">
+                                                    <li>
+                                                        <p class="text-black font-semibold dark:text-white">
+                                                            $1,000
+                                                        </p>
+                                                        <p class="text-sm pt-1 dark:text-gray-400">
+                                                            Fixed-price
+                                                        </p>
                                                     </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        HTML
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        CSS
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        JavaScript
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        Web Flow
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        User Experience
+                                                    <li>
+                                                        <p class="text-black font-semibold dark:text-white">
+                                                            Intermediate
+                                                        </p>
+                                                        <p class="text-sm pt-1 dark:text-gray-400">
+                                                            Experience level
+                                                        </p>
                                                     </li>
                                                 </ul>
-                                                <div class="pl-2 py-4 lg:pt-4 lg:py-10">
-                                                    <a href="../src/error404.html"
-                                                        class="bg-orange-600 text-white rounded-3xl py-2 px-4 text-sm font-semibold">See
-                                                        more</a>
+                                                <p class="text-gray-400 truncate pl-2 lg:pl-4">
+                                                    <?= $project['descreption'] ?>
+                                                </p>
+                                                <br>
+                                                <p class="text-gray-400 truncate pl-2 lg:pl-4">
+                                                    Category
+                                                </p>
+                                                <div>
+                                                    <ul class="pl-2 py-4 lg:pt-4 lg:py-10 flex gap-5">
+                                                        <li
+                                                            class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
+                                                            website
+                                                        </li>
+                                                        <li
+                                                            class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
+                                                            HTML
+                                                        </li>
+                                                        <li
+                                                            class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
+                                                            CSS
+                                                        </li>
+                                                        <li
+                                                            class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
+                                                            JavaScript
+                                                        </li>
+                                                        <li
+                                                            class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
+                                                            Web Flow
+                                                        </li>
+                                                        <li
+                                                            class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
+                                                            User Experience
+                                                        </li>
+                                                    </ul>
+                                                    <div class="pl-2 py-4 lg:pt-4 lg:py-10">
+                                                        <a href="../src/error404.html"
+                                                            class="bg-orange-600 text-white rounded-3xl py-2 px-4 text-sm font-semibold">See
+                                                            more</a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div
-                                            class="lg:w-1/4 md:w-1/2 p-4 w-full ring-1 rounded-lg ring-gray-300 dark:ring-gray-700 bg-white dark:bg-gray-900 mt-5">
-                                            <h3
-                                                class="text-gray-900 font-bold text-lg p-2 lg:p-4 lg:text-xl tracking-widest title-font mb-1 dark:text-white">
-                                                <a href="../src/error404.html">Nextjs Sanity CMS/WordPress CMS
-                                                    Typescript
-                                                    Expert</a>
-                                            </h3>
-                                            <p class="text-sm text-gray-400 pl-2 lg:pl-4">
-                                                Fixed-price - Posted 10 days ago
-                                            </p>
-                                            <ul class="pl-2 py-4 lg:pt-4 lg:py-6 flex gap-20">
-                                                <li>
-                                                    <p class="text-black font-semibold dark:text-white">
-                                                        $500
-                                                    </p>
-                                                    <p class="text-sm pt-1 dark:text-gray-400">
-                                                        Fixed-price
-                                                    </p>
-                                                </li>
-                                                <li>
-                                                    <p class="text-black font-semibold dark:text-white">
-                                                        Beginner - Intermediate
-                                                    </p>
-                                                    <p class="text-sm pt-1 dark:text-gray-400">
-                                                        Entry level
-                                                    </p>
-                                                </li>
-                                            </ul>
-                                            <p class="text-gray-400 truncate pl-2 lg:pl-4">
-                                                We are looking for a skilled and experienced Nextjs
-                                                Sanity CMS/WordPress CMS Typescript Expert to join our
-                                                team. As an expert in Nextjs and CMS platforms, you
-                                                will be responsible for developing and maintaining
-                                                websites using Nextjs and Sanity CMS/WordPress CMS,
-                                                with a focus on Typescript. You should have a strong
-                                                understanding of front-end development, responsive
-                                                design, and web performance optimization.
-                                            </p>
-                                            <div>
-                                                <ul class="pl-2 py-4 lg:pt-4 lg:py-10 flex gap-2 md:gap-5">
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        Website
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        HTML
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        CSS
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        JavaScript
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        PHP
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        WordPress
-                                                    </li>
-                                                </ul>
-                                                <div class="pl-2 py-4 lg:pt-4 lg:py-10">
-                                                    <a href="../src/error404.html"
-                                                        class="bg-orange-600 text-white rounded-3xl py-2 px-4 text-sm font-semibold">See
-                                                        more</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="lg:w-1/4 md:w-1/2 p-4 w-full ring-1 rounded-lg ring-gray-300 dark:ring-gray-700 bg-white dark:bg-gray-900 mt-5">
-                                            <h3
-                                                class="text-gray-900 font-bold text-lg p-2 lg:p-4 lg:text-xl tracking-widest title-font mb-1 dark:text-white">
-                                                <a href="../src/error404.html">Make bubble website faster</a>
-                                            </h3>
-                                            <p class="text-sm text-gray-400 pl-2 lg:pl-4">
-                                                Fixed-price - Posted 1 days ago
-                                            </p>
-                                            <ul class="pl-2 py-4 lg:pt-4 lg:py-6 flex gap-20">
-                                                <li>
-                                                    <p class="text-black font-semibold dark:text-white">
-                                                        $300
-                                                    </p>
-                                                    <p class="text-sm pt-1 dark:text-gray-400">
-                                                        Fixed-price
-                                                    </p>
-                                                </li>
-                                                <li>
-                                                    <p class="text-black font-semibold dark:text-white">
-                                                        Intermediate
-                                                    </p>
-                                                    <p class="text-sm pt-1 dark:text-gray-400">
-                                                        Experience level
-                                                    </p>
-                                                </li>
-                                            </ul>
-                                            <p class="text-gray-400 truncate pl-2 lg:pl-4">
-                                                i have made some landing pages on bubble and now
-                                                trying to make them faster and score better. help me
-                                                to achieve this
-                                            </p>
-                                            <div>
-                                                <ul class="pl-2 py-4 lg:pt-4 lg:py-10 flex gap-5">
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        Website
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        HTML
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        CSS
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        JavaScript
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        Web Flow
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        User Experience
-                                                    </li>
-                                                </ul>
-                                                <div class="pl-2 py-4 lg:pt-4 lg:py-10">
-                                                    <a href="../src/error404.html"
-                                                        class="bg-orange-600 text-white rounded-3xl py-2 px-4 text-sm font-semibold">See
-                                                        more</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="lg:w-1/4 md:w-1/2 p-4 w-full ring-1 rounded-lg ring-gray-300 dark:ring-gray-700 bg-white dark:bg-gray-900 mt-5">
-                                            <h3
-                                                class="text-gray-900 font-bold text-lg p-2 lg:p-4 lg:text-xl tracking-widest title-font mb-1 dark:text-white">
-                                                <a href="../src/error404.html">Squarespace Developer</a>
-                                            </h3>
-                                            <p class="text-sm text-gray-400 pl-2 lg:pl-4">
-                                                Hourly - Posted 7 days ago
-                                            </p>
-                                            <ul class="pl-2 py-4 lg:pt-4 lg:py-6 flex gap-20">
-                                                <li>
-                                                    <p class="text-black font-semibold dark:text-white">
-                                                        $100
-                                                    </p>
-                                                    <p class="text-sm pt-1 dark:text-gray-400">
-                                                        Hourly
-                                                    </p>
-                                                </li>
-                                                <li>
-                                                    <p class="text-black font-semibold dark:text-white">
-                                                        Expert
-                                                    </p>
-                                                    <p class="text-sm pt-1 dark:text-gray-400">
-                                                        Experience level
-                                                    </p>
-                                                </li>
-                                            </ul>
-                                            <p class="text-gray-400 truncate pl-2 lg:pl-4">
-                                                I need a webflow professional that can also be an
-                                                interaction designer that can work by my side (as a
-                                                designer) to fix page transitions/ buttons
-                                                interactions / loading animation effects into my
-                                                website under development with another team (
-                                                https://design-ledger.webflow.io/). We also need to
-                                                build a Design System / Page for the website. At the
-                                                end, we need to also turn this website into a template
-                                                for Webflow marketplace. Please share your portfolio
-                                                so I can see it. Thanks in advance.
-                                            </p>
-                                            <div>
-                                                <ul class="pl-2 py-4 lg:pt-4 lg:py-10 flex gap-5">
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        Website
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        HTML
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        CSS
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        JavaScript
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        Web Flow
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        User Experience
-                                                    </li>
-                                                </ul>
-                                                <div class="pl-2 py-4 lg:pt-4 lg:py-10">
-                                                    <a href="../src/error404.html"
-                                                        class="bg-orange-600 text-white rounded-3xl py-2 px-4 text-sm font-semibold">See
-                                                        more</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="lg:w-1/4 md:w-1/2 p-4 w-full ring-1 rounded-lg ring-gray-300 dark:ring-gray-700 bg-white dark:bg-gray-900 mt-5">
-                                            <h3
-                                                class="text-gray-900 font-bold text-lg p-2 lg:p-4 lg:text-xl tracking-widest title-font mb-1 dark:text-white">
-                                                <a href="../src/error404.html">Webflow Interaction Designer</a>
-                                            </h3>
-                                            <p class="text-sm text-gray-400 pl-2 lg:pl-4">
-                                                Fixed-price - Posted 3 days ago
-                                            </p>
-                                            <ul class="pl-2 py-4 lg:pt-4 lg:py-6 flex gap-20">
-                                                <li>
-                                                    <p class="text-black font-semibold dark:text-white">
-                                                        $1,000
-                                                    </p>
-                                                    <p class="text-sm pt-1 dark:text-gray-400">
-                                                        Fixed-price
-                                                    </p>
-                                                </li>
-                                                <li>
-                                                    <p class="text-black font-semibold dark:text-white">
-                                                        Intermediate
-                                                    </p>
-                                                    <p class="text-sm pt-1 dark:text-gray-400">
-                                                        Experience level
-                                                    </p>
-                                                </li>
-                                            </ul>
-                                            <p class="text-gray-400 truncate pl-2 lg:pl-4">
-                                                I need a webflow professional that can also be an
-                                                interaction designer that can work by my side (as a
-                                                designer) to fix page transitions/ buttons
-                                                interactions / loading animation effects into my
-                                                Website under development with another team (
-                                                https://design-ledger.webflow.io/). We also need to
-                                                build a Design System / Page for the Website. At the
-                                                end, we need to also turn this Website into a template
-                                                for Webflow marketplace. Please share your portfolio
-                                                so I can see it. Thanks in advance.
-                                            </p>
-                                            <div>
-                                                <ul class="pl-2 py-4 lg:pt-4 lg:py-10 flex gap-5">
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        Website
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        HTML
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        CSS
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        JavaScript
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        Web Flow
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        User Experience
-                                                    </li>
-                                                </ul>
-                                                <div class="pl-2 py-4 lg:pt-4 lg:py-10">
-                                                    <a href="../src/error404.html"
-                                                        class="bg-orange-600 text-white rounded-3xl py-2 px-4 text-sm font-semibold">See
-                                                        more</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="lg:w-1/4 md:w-1/2 p-4 w-full ring-1 rounded-lg ring-gray-300 dark:ring-gray-700 bg-white dark:bg-gray-900 mt-5">
-                                            <h3
-                                                class="text-gray-900 font-bold text-lg p-2 lg:p-4 lg:text-xl tracking-widest title-font mb-1 dark:text-white">
-                                                <a href="../src/error404.html">Webflow Interaction Designer</a>
-                                            </h3>
-                                            <p class="text-sm text-gray-400 pl-2 lg:pl-4">
-                                                Fixed-price - Posted 3 days ago
-                                            </p>
-                                            <ul class="pl-2 py-4 lg:pt-4 lg:py-6 flex gap-20">
-                                                <li>
-                                                    <p class="text-black font-semibold dark:text-white">
-                                                        $1,000
-                                                    </p>
-                                                    <p class="text-sm pt-1 dark:text-gray-400">
-                                                        Fixed-price
-                                                    </p>
-                                                </li>
-                                                <li>
-                                                    <p class="text-black font-semibold dark:text-white">
-                                                        Intermediate
-                                                    </p>
-                                                    <p class="text-sm pt-1 dark:text-gray-400">
-                                                        Experience level
-                                                    </p>
-                                                </li>
-                                            </ul>
-                                            <p class="text-gray-400 truncate pl-2 lg:pl-4">
-                                                I need a webflow professional that can also be an
-                                                interaction designer that can work by my side (as a
-                                                designer) to fix page transitions/ buttons
-                                                interactions / loading animation effects into my
-                                                Website under development with another team (
-                                                https://design-ledger.webflow.io/). We also need to
-                                                build a Design System / Page for the Website. At the
-                                                end, we need to also turn this Website into a template
-                                                for Webflow marketplace. Please share your portfolio
-                                                so I can see it. Thanks in advance.
-                                            </p>
-                                            <div>
-                                                <ul class="pl-2 py-4 lg:pt-4 lg:py-10 flex gap-5">
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        Website
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        HTML
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        CSS
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        JavaScript
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        Web Flow
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        User Experience
-                                                    </li>
-                                                </ul>
-                                                <div class="pl-2 py-4 lg:pt-4 lg:py-10">
-                                                    <a href="../src/error404.html"
-                                                        class="bg-orange-600 text-white rounded-3xl py-2 px-4 text-sm font-semibold">See
-                                                        more</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="lg:w-1/4 md:w-1/2 p-4 w-full ring-1 rounded-lg ring-gray-300 dark:ring-gray-700 bg-white dark:bg-gray-900 mt-5">
-                                            <h3
-                                                class="text-gray-900 font-bold text-lg p-2 lg:p-4 lg:text-xl tracking-widest title-font mb-1 dark:text-white">
-                                                <a href="../src/error404.html">Webflow Interaction Designer</a>
-                                            </h3>
-                                            <p class="text-sm text-gray-400 pl-2 lg:pl-4">
-                                                Fixed-price - Posted 3 days ago
-                                            </p>
-                                            <ul class="pl-2 py-4 lg:pt-4 lg:py-6 flex gap-20">
-                                                <li>
-                                                    <p class="text-black font-semibold dark:text-white">
-                                                        $1,000
-                                                    </p>
-                                                    <p class="text-sm pt-1 dark:text-gray-400">
-                                                        Fixed-price
-                                                    </p>
-                                                </li>
-                                                <li>
-                                                    <p class="text-black font-semibold dark:text-white">
-                                                        Intermediate
-                                                    </p>
-                                                    <p class="text-sm pt-1 dark:text-gray-400">
-                                                        Experience level
-                                                    </p>
-                                                </li>
-                                            </ul>
-                                            <p class="text-gray-400 truncate pl-2 lg:pl-4">
-                                                I need a webflow professional that can also be an
-                                                interaction designer that can work by my side (as a
-                                                designer) to fix page transitions/ buttons
-                                                interactions / loading animation effects into my
-                                                website under development with another team (
-                                                https://design-ledger.webflow.io/). We also need to
-                                                build a Design System / Page for the website. At the
-                                                end, we need to also turn this website into a template
-                                                for Webflow marketplace. Please share your portfolio
-                                                so I can see it. Thanks in advance.
-                                            </p>
-                                            <div>
-                                                <ul class="pl-2 py-4 lg:pt-4 lg:py-10 flex gap-5">
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        Website
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        HTML
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        CSS
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        JavaScript
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        Web Flow
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        User Experience
-                                                    </li>
-                                                </ul>
-                                                <div class="pl-2 py-4 lg:pt-4 lg:py-10">
-                                                    <a href="../src/error404.html"
-                                                        class="bg-orange-600 text-white rounded-3xl py-2 px-4 text-sm font-semibold">See
-                                                        more</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="lg:w-1/4 md:w-1/2 p-4 w-full ring-1 rounded-lg ring-gray-300 dark:ring-gray-700 bg-white dark:bg-gray-900 mt-5">
-                                            <h3
-                                                class="text-gray-900 font-bold text-lg p-2 lg:p-4 lg:text-xl tracking-widest title-font mb-1 dark:text-white">
-                                                <a href="../src/error404.html">Webflow Interaction Designer</a>
-                                            </h3>
-                                            <p class="text-sm text-gray-400 pl-2 lg:pl-4">
-                                                Fixed-price - Posted 3 days ago
-                                            </p>
-                                            <ul class="pl-2 py-4 lg:pt-4 lg:py-6 flex gap-20">
-                                                <li>
-                                                    <p class="text-black font-semibold dark:text-white">
-                                                        $1,000
-                                                    </p>
-                                                    <p class="text-sm pt-1 dark:text-gray-400">
-                                                        Fixed-price
-                                                    </p>
-                                                </li>
-                                                <li>
-                                                    <p class="text-black font-semibold dark:text-white">
-                                                        Intermediate
-                                                    </p>
-                                                    <p class="text-sm pt-1 dark:text-gray-400">
-                                                        Experience level
-                                                    </p>
-                                                </li>
-                                            </ul>
-                                            <p class="text-gray-400 truncate pl-2 lg:pl-4">
-                                                I need a webflow professional that can also be an
-                                                interaction designer that can work by my side (as a
-                                                designer) to fix page transitions/ buttons
-                                                interactions / loading animation effects into my
-                                                website under development with another team (
-                                                https://design-ledger.webflow.io/). We also need to
-                                                build a Design System / Page for the website. At the
-                                                end, we need to also turn this website into a template
-                                                for Webflow marketplace. Please share your portfolio
-                                                so I can see it. Thanks in advance.
-                                            </p>
-                                            <div>
-                                                <ul class="pl-2 py-4 lg:pt-4 lg:py-10 flex gap-5">
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        Website
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        HTML
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        CSS
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        JavaScript
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        Web Flow
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        User Experience
-                                                    </li>
-                                                </ul>
-                                                <div class="pl-2 py-4 lg:pt-4 lg:py-10">
-                                                    <a href="../src/error404.html"
-                                                        class="bg-orange-600 text-white rounded-3xl py-2 px-4 text-sm font-semibold">See
-                                                        more</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="lg:w-1/4 md:w-1/2 p-4 w-full ring-1 rounded-lg ring-gray-300 dark:ring-gray-700 bg-white dark:bg-gray-900 mt-5">
-                                            <h3
-                                                class="text-gray-900 font-bold text-lg p-2 lg:p-4 lg:text-xl tracking-widest title-font mb-1 dark:text-white">
-                                                <a href="../src/error404.html">Webflow Interaction Designer</a>
-                                            </h3>
-                                            <p class="text-sm text-gray-400 pl-2 lg:pl-4">
-                                                Fixed-price - Posted 3 days ago
-                                            </p>
-                                            <ul class="pl-2 py-4 lg:pt-4 lg:py-6 flex gap-20">
-                                                <li>
-                                                    <p class="text-black font-semibold dark:text-white">
-                                                        $1,000
-                                                    </p>
-                                                    <p class="text-sm pt-1 dark:text-gray-400">
-                                                        Fixed-price
-                                                    </p>
-                                                </li>
-                                                <li>
-                                                    <p class="text-black font-semibold dark:text-white">
-                                                        Intermediate
-                                                    </p>
-                                                    <p class="text-sm pt-1 dark:text-gray-400">
-                                                        Experience level
-                                                    </p>
-                                                </li>
-                                            </ul>
-                                            <p class="text-gray-400 truncate pl-2 lg:pl-4">
-                                                I need a webflow professional that can also be an
-                                                interaction designer that can work by my side (as a
-                                                designer) to fix page transitions/ buttons
-                                                interactions / loading animation effects into my
-                                                website under development with another team (
-                                                https://design-ledger.webflow.io/). We also need to
-                                                build a Design System / Page for the website. At the
-                                                end, we need to also turn this website into a template
-                                                for Webflow marketplace. Please share your portfolio
-                                                so I can see it. Thanks in advance.
-                                            </p>
-                                            <div>
-                                                <ul class="pl-2 py-4 lg:pt-4 lg:py-10 flex gap-5">
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        Website
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        HTML
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        CSS
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        JavaScript
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        Web Flow
-                                                    </li>
-                                                    <li
-                                                        class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                        User Experience
-                                                    </li>
-                                                </ul>
-                                                <div class="pl-2 py-4 lg:pt-4 lg:py-10">
-                                                    <a href="../src/error404.html"
-                                                        class="bg-orange-600 text-white rounded-3xl py-2 px-4 text-sm font-semibold">See
-                                                        more</a>
-                                                </div>
-                                            </div>
-                                        </div>
+
+                                        <?php endforeach; ?>
+
                                     </div>
                                 </div>
                             </section>
@@ -1478,6 +842,30 @@
         </div>
     </footer>
     <script src="../js/theme.js"></script>
+    <script type="text/JavaScript">
+
+        function get_data() {
+
+            var text = document.getElementById('voice-search').value;
+            var form = new FormData();
+            form.append('text', text);
+
+            var ajax = new XMLHttpRequest();
+            
+            ajax.addEventListener('readystatechange', function(e){
+
+                if(ajax.readyState = 4 && ajax.status == 200){
+                    handle_result(ajax.responseText);
+                }
+            });
+            ajax.open('POST','api.php',true);
+            ajax.send(form);
+        }
+
+        function handle_result(result){
+            console.log(result);
+        }
+    </script>
 </body>
 
 </html>

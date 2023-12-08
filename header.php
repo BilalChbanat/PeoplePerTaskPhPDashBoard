@@ -1,7 +1,8 @@
 <nav class="flex flex-row justify-between items-center p-[1%]">
+
     <div class="text-black dark:text-white">
         <div class="flex gap-2">
-            <h2 class="font-bold text-2xl "> Welcome Back,Ali</h2>
+            <h2 class="font-bold text-2xl "> Welcome Back, <?= $_SESSION['name'] ?></h2>
             <img src="../../images/Waving Hand Emoji.svg" alt="waving hand">
         </div>
         <p class="text-textG text-base">Here's what's happening with your store touday</p>

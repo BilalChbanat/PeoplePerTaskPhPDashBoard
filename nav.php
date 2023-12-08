@@ -18,7 +18,7 @@
                 colors="primary:#6366F1,secondary:#6366F1" style="width:33px;height:33px;font-weight:700;">
             </lord-icon>
         </b>
-        <a href="./freelancer.php"><span class="mx-4">Freelancers</span></a>
+        <a href="#"><span class="mx-4">Freelancers</span></a>
     </li>
     <li
         class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
