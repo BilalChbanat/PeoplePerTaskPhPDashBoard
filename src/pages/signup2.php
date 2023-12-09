@@ -3,6 +3,11 @@
 
 <?php
 require './dbh.inc.php';
+session_start();
+include('./script.php');
+if(isset($_SESSION['email'])){
+  header('Location: index.php');
+}
 
 $sql = "SELECT * FROM ville";
 $result = mysqli_query($conn, $sql);

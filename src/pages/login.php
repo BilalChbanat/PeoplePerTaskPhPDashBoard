@@ -2,7 +2,11 @@
 <html lang="en">
 
 <?php
+session_start();
 include('./script.php');
+if(isset($_SESSION['email'])){
+  header('Location: index.php');
+}
 ?>
 
 <head>
