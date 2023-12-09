@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css/dist/charts.min.css" />
     <title>Find A Work</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
     <!--  -->
 </head>
@@ -36,7 +37,7 @@
                             d="M11.15 5.6h.01m3.337 1.913h.01m-6.979 0h.01M5.541 11h.01M15 15h2.706a1.957 1.957 0 0 0 1.883-1.325A9 9 0 1 0 2.043 11.89 9.1 9.1 0 0 0 7.2 19.1a8.62 8.62 0 0 0 3.769.9A2.013 2.013 0 0 0 13 18v-.857A2.034 2.034 0 0 1 15 15Z" />
                     </svg>
                 </div>
-                <input type="text" id="voice-search" onchange="get_data(this.value)"
+                <input type="text" id="getName"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search Mockups, Logos, Design Templates..." required>
                 <button type="button" class="absolute inset-y-0 end-0 flex items-center pe-3">
@@ -619,79 +620,79 @@
                             <section class="text-gray-600 body-font">
                                 <div class="container px-5 py-24 mx-auto">
                                     <div class="flex flex-wrap -m-4">
-
                                         <?php foreach ($projects as $project): ?>
-                                            <div
-                                                class="lg:w-1/4 md:w-1/2 p-4 w-full ring-1 rounded-lg ring-gray-300 dark:ring-gray-700 bg-white dark:bg-gray-900">
-                                                <h3
-                                                    class="text-gray-900 font-bold text-lg p-2 lg:p-4 lg:text-xl tracking-widest title-font mb-1 dark:text-white">
-                                                    <a href="../src/error404.html">
-                                                        <?= $project['title_projet'] ?>
-                                                    </a>
-                                                </h3>
-                                                <p class="text-sm text-gray-400 pl-2 lg:pl-4">
-                                                    Fixed-price - Posted 3 days ago
-                                                </p>
-                                                <ul class="pl-2 py-4 lg:pt-4 lg:py-6 flex gap-20">
-                                                    <li>
-                                                        <p class="text-black font-semibold dark:text-white">
-                                                            $1,000
-                                                        </p>
-                                                        <p class="text-sm pt-1 dark:text-gray-400">
-                                                            Fixed-price
-                                                        </p>
-                                                    </li>
-                                                    <li>
-                                                        <p class="text-black font-semibold dark:text-white">
-                                                            Intermediate
-                                                        </p>
-                                                        <p class="text-sm pt-1 dark:text-gray-400">
-                                                            Experience level
-                                                        </p>
-                                                    </li>
-                                                </ul>
-                                                <p class="text-gray-400 truncate pl-2 lg:pl-4">
-                                                    <?= $project['descreption'] ?>
-                                                </p>
-                                                <br>
-                                                <p class="text-gray-400 truncate pl-2 lg:pl-4">
-                                                    Category
-                                                </p>
-                                                <div>
-                                                    <ul class="pl-2 py-4 lg:pt-4 lg:py-10 flex gap-5">
-                                                        <li
-                                                            class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                            website
+                                            <div id="searchResultsContainer">
+                                                <div id="showdata"
+                                                    class="lg:w-1/4 md:w-1/2 p-4 w-full ring-1 rounded-lg ring-gray-300 dark:ring-gray-700 bg-white dark:bg-gray-900">
+                                                    <h3
+                                                        class="text-gray-900 font-bold text-lg p-2 lg:p-4 lg:text-xl tracking-widest title-font mb-1 dark:text-white">
+                                                        <a href="../src/error404.html">
+                                                            <?= $project['title_projet'] ?>
+                                                        </a>
+                                                    </h3>
+                                                    <p class="text-sm text-gray-400 pl-2 lg:pl-4">
+                                                        Fixed-price - Posted 3 days ago
+                                                    </p>
+                                                    <ul class="pl-2 py-4 lg:pt-4 lg:py-6 flex gap-20">
+                                                        <li>
+                                                            <p class="text-black font-semibold dark:text-white">
+                                                                $1,000
+                                                            </p>
+                                                            <p class="text-sm pt-1 dark:text-gray-400">
+                                                                Fixed-price
+                                                            </p>
                                                         </li>
-                                                        <li
-                                                            class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                            HTML
-                                                        </li>
-                                                        <li
-                                                            class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                            CSS
-                                                        </li>
-                                                        <li
-                                                            class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                            JavaScript
-                                                        </li>
-                                                        <li
-                                                            class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                            Web Flow
-                                                        </li>
-                                                        <li
-                                                            class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
-                                                            User Experience
+                                                        <li>
+                                                            <p class="text-black font-semibold dark:text-white">
+                                                                Intermediate
+                                                            </p>
+                                                            <p class="text-sm pt-1 dark:text-gray-400">
+                                                                Experience level
+                                                            </p>
                                                         </li>
                                                     </ul>
-                                                    <div class="pl-2 py-4 lg:pt-4 lg:py-10">
-                                                        <a href="../src/error404.html"
-                                                            class="bg-orange-600 text-white rounded-3xl py-2 px-4 text-sm font-semibold">See
-                                                            more</a>
+                                                    <p class="text-gray-400 truncate pl-2 lg:pl-4">
+                                                        <?= $project['descreption'] ?>
+                                                    </p>
+                                                    <br>
+                                                    <p class="text-gray-400 truncate pl-2 lg:pl-4">
+                                                        Category
+                                                    </p>
+                                                    <div>
+                                                        <ul class="pl-2 py-4 lg:pt-4 lg:py-10 flex gap-5">
+                                                            <li
+                                                                class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
+                                                                website
+                                                            </li>
+                                                            <li
+                                                                class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
+                                                                HTML
+                                                            </li>
+                                                            <li
+                                                                class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
+                                                                CSS
+                                                            </li>
+                                                            <li
+                                                                class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
+                                                                JavaScript
+                                                            </li>
+                                                            <li
+                                                                class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
+                                                                Web Flow
+                                                            </li>
+                                                            <li
+                                                                class="bg-orange-300 text-orange-600 rounded-3xl py-1.5 px-3 text-xs font-semibold">
+                                                                User Experience
+                                                            </li>
+                                                        </ul>
+                                                        <div class="pl-2 py-4 lg:pt-4 lg:py-10">
+                                                            <a href="../src/error404.html"
+                                                                class="bg-orange-600 text-white rounded-3xl py-2 px-4 text-sm font-semibold">See
+                                                                more</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-
                                         <?php endforeach; ?>
 
                                     </div>
@@ -711,6 +712,7 @@
                                 </a>
                             </div>
                         </div>
+
                     </div>
                 </section>
             </main>
@@ -842,7 +844,7 @@
         </div>
     </footer>
     <script src="../js/theme.js"></script>
-    <script type="text/JavaScript">
+    <!-- <script type="text/JavaScript">
 
         function get_data() {
 
@@ -865,6 +867,38 @@
         function handle_result(result){
             console.log(result);
         }
+    </script> -->
+    <!-- <script>
+        $(document).ready(function () {
+            $('#getName').on("keyup", function () {
+                var getName = $(this).val();
+                $.ajax({
+                    method: 'POST',
+                    url: 'searchajax.php',
+                    data: { name: getName },
+                    success: function (response) {
+                        $("#showdata").html(response);
+                    }
+                });
+            });
+        });
+    </script> -->
+    <script>
+        $(document).ready(function () {
+            $('#getName').on("keyup", function () {
+                var getName = $(this).val();
+                $.ajax({
+                    method: 'POST',
+                    url: 'searchajax.php',
+                    data: { name: getName },
+                    success: function (response) {
+                        // Append the new search results to the container
+                        $("#searchResultsContainer").html(response);
+                    }
+                });
+            });
+        });
+
     </script>
 </body>
 
