@@ -95,6 +95,7 @@ function login()
             $_SESSION['name'] = $row['name_user'];
             // $_SESSION['ville'] = $row['ville'];
             $_SESSION['skills'] = $row['skills'];
+            $_SESSION['userRole'] = $row['role'];
 
             if ($row['role'] == 'user') {
                 $_SESSION['email'] = $row['email'];
