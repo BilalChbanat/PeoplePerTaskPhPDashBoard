@@ -22,6 +22,17 @@
         header("Location: login.php");
     }
 
+        // $stmt = "SELECT * FROM user";
+        // $resultt = mysqli_query($conn, $stmt);
+        
+
+
+        // if($row = mysqli_fetch_assoc($resultt)){
+        //     if($row['role'] != 'user'){
+        //         header("Location: ind");
+        //     }
+        // }
+    
     if (isset($_POST['save'])) {
         $title_projet = $_POST['title_projet'];
         $descreption = $_POST['description'];

@@ -93,19 +93,19 @@ function login()
         if (password_verify($password, $row['password'])) {
             $_SESSION['email'] = $row['email'];
             $_SESSION['name'] = $row['name_user'];
-            $_SESSION['ville'] = $row['ville'];
+            // $_SESSION['ville'] = $row['ville'];
             $_SESSION['skills'] = $row['skills'];
 
             if ($row['role'] == 'user') {
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['name'] = $row['name_user'];
-                $_SESSION['ville'] = $row['ville'];
+                // $_SESSION['ville'] = $row['ville'];
                 $_SESSION['skills'] = $row['skills'];
                 header("location: ./index.php");
             } elseif ($row['role'] == 'freelancer') {
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['name'] = $row['name_user'];
-                $_SESSION['ville'] = $row['ville'];
+                // $_SESSION['ville'] = $row['ville'];
                 $_SESSION['skills'] = $row['skills'];
                 // echo '<script type="text/javascript">';
                 // echo 'window.location.href = ./index.php';
