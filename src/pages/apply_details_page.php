@@ -627,6 +627,16 @@
                                 <div class="container px-5 py-24 mx-auto">
                                     <div class="flex flex-wrap -m-4">
                                         <?php foreach ($projects as $project): ?>
+                                            <?php
+                                            // Find the corresponding offer for the current project
+                                            $matchingOffer = null;
+                                            foreach ($offers as $offer) {
+                                                if ($offer['id_projet'] == $project['id_projet']) {
+                                                    $matchingOffer = $offer;
+                                                    break;
+                                                }
+                                            }
+                                            ?>
                                             <div id="searchResultsContainer">
                                                 <div id="showdata"
                                                     class="lg:w-1/4 md:w-1/2 p-4 w-full ring-1 rounded-lg ring-gray-300 dark:ring-gray-700 bg-white dark:bg-gray-900">
@@ -642,10 +652,13 @@
                                                     <ul class="pl-2 py-4 lg:pt-4 lg:py-6 flex gap-20">
                                                         <li>
                                                             <p class="text-black font-semibold dark:text-white">
-                                                                <?php if ($row = mysqli_fetch_assoc($resulto)) {
-                                                                    var_dump($row['montant']);
-                                                                    echo $row['montant'];
-                                                                } ?>
+                                                                <?php
+                                                                if ($matchingOffer) {
+                                                                    echo $matchingOffer['montant'];
+                                                                } else {
+                                                                    echo "No offer available";
+                                                                }
+                                                                ?>
                                                             </p>
                                                             <p class="text-sm pt-1 dark:text-gray-400">
                                                                 Fixed-price
@@ -656,9 +669,10 @@
                                                                 Delai
                                                             </p>
                                                             <p class="text-sm pt-1 dark:text-gray-400">
-                                                                <?php if ($row = mysqli_fetch_assoc($resulto)) {
-                                                                    var_dump($row['delai']);
-                                                                    echo $row['delai'];
+                                                                <?php if ($matchingOffer) {
+                                                                    echo $matchingOffer['delai'];
+                                                                } else {
+                                                                    echo "No offer available";
                                                                 } ?>
                                                             </p>
                                                         </li>
